@@ -14,7 +14,7 @@ require 'json'
 require 'selenium-webdriver'
 
 # Spécifiez le chemin vers le ChromeDriver si ce n'est pas dans votre PATH
-Selenium::WebDriver::Chrome::Service.driver_path = ENV['CHROMEDRIVER']
+Selenium::WebDriver::Chrome::Service.driver_path = "/home/adam/chromedriver-linux64/chromedriver"
 
 # Créez une instance du navigateur Chrome
 options = Selenium::WebDriver::Chrome::Options.new
@@ -22,7 +22,9 @@ driver = Selenium::WebDriver.for :chrome, options: options
 
 # Ouvrez une page Web
 driver.navigate.to 'https://www.centrale-ethnique.com/tous-les-produits/03683-nval'
-sleep(2)
+wait = Selenium::WebDriver::Wait.new(timeout: 2) # Timeout après 10 secondes
+wait.until { driver.find_element(:tag_name, 'h1').displayed? }
+
 # Ici, vous pouvez ajouter le code pour interagir avec la page
 # Par exemple, trouver un élément et récupérer des données
 element = driver.find_element(:tag_name, 'h1')
