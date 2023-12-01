@@ -1,1 +1,15 @@
 <h1>Tous les produits</h1>
+
+<div class="container text-center">
+  <div class="row row-cols-4">
+    <% @products.each do |product| %>
+      <div class="col">
+        <p><%= product.name %></p>
+        <% if product.link %>
+          <%= image_tag product.link, height: 160, width: 160, crop: :fill %>
+        <% end %>
+        <%= link_to "#{product.name}", product_path(product) %>
+      </div>
+    <% end %>
+  </div>
+</div>

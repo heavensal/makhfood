@@ -1,15 +1,7 @@
 <h1><%= @product.name %></h1>
-<%= cl_image_tag @product.photo.key, height: 160, width: 160, crop: :fill %>
-<p><%= @product.sku %></p>
-<p><%= @product.ean %></p>
-<p><%= @product.unit_price %></p>
-<p><%= @product.unit %></p>
-<p><%= @product.box %></p>
-<p><%= @product.price_per_unit %></p>
-<p><%= @product.mesure_unit %></p>
-<p><%= @product.tva %></p>
-<p><%= @product.ht_box_price %></p>
-<p><%= @product.ttc_box_price %></p>
+
+<% if @product.link %>
+  <%= image_tag @product.link, height: 160, width: 160, crop: :fill %>
+<% end %>
+
 <p><%= @product.description %></p>
-<p><%= @product.specification %></p>
-<p><%= @product.conditionning %></p>
