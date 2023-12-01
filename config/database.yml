@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: makhfood_production
-  username: makhfood
-  password: <%= ENV["MAKHFOOD_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
