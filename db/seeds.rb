@@ -8,9 +8,6 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-require "open-uri"
-require "nokogiri"
-require 'json'
 require 'selenium-webdriver'
 
 # Spécifiez le chemin vers le ChromeDriver si ce n'est pas dans votre PATH
@@ -20,22 +17,84 @@ Selenium::WebDriver::Chrome::Service.driver_path = "/home/adam/chromedriver-linu
 options = Selenium::WebDriver::Chrome::Options.new
 driver = Selenium::WebDriver.for :chrome, options: options
 
-# Ouvrez une page Web
 driver.navigate.to 'https://www.centrale-ethnique.com/tous-les-produits/03683-nval'
-wait = Selenium::WebDriver::Wait.new(timeout: 2) # Timeout après 10 secondes
-wait.until { driver.find_element(:tag_name, 'h1').displayed? }
+driver.manage.timeouts.implicit_wait = 10
 
-# Ici, vous pouvez ajouter le code pour interagir avec la page
-# Par exemple, trouver un élément et récupérer des données
-element = driver.find_element(:tag_name, 'h1')
-puts element.text
+product = Product.new
+product.name = driver.find_element(:tag_name, 'h1').text
 
-# Fermez le navigateur
+product.sku = driver.find_element(css: 'div.grey-30-color > span:nth-child(1) > span:nth-child(2)').text
+
+product.ean = driver.find_element(xpath: '//div[contains(@class, "grey-30-color")]/span[2]/span[2]').text.to_i
+
+img = driver.find_element(xpath: '//*[@id="catalog_product_view-media_gallery"]//img').attribute('src')
+file = URI.open(img)
+product.photo.attach(io: file, filename: "#{product.name.gsub(" ", "_")}.jpg", content_type: "image/jpg")
+
+span_element = driver.find_element(css: 'span.final-price.primary-color').text
+match = span_element.match(/(\d+\.\d+)/)
+product.unit_price = match[1].to_f if match
+
+texte_apres_slash_match = span_element.match(/\/\s*(.+)/)
+product.unit = texte_apres_slash_match[1] if texte_apres_slash_match
+
+product.box = driver.find_element(css: '.d_flex.ai-center.size-18.text-uppercase.m-b-1 > span:nth-child(2)').text
+
+element = driver.find_element(xpath: '(//div[@class="d_flex ai-center col-gap-5"])[2]//span[1]').text
+match = element.match(/(\d+\.\d+)/)
+product.price_per_unit = match[1].to_f if match
+
+match = element.match(/\/\s*(.+)/)
+product.mesure_unit = match[1] if match
+pourcentage_element = driver.find_element(css: 'div.d_flex.ai-center.col-gap-5:nth-child(2) span.size-12.text-uppercase:nth-child(2) span:nth-child(2)').text
+product.tva = pourcentage_element.gsub('%', '').to_f
+
+
+match = driver.find_element(css: '.d_flex.ai-center.col-gap-30.m-b-3.size-12 > span:nth-child(1)').text
+match = match.match(/(\d+\.\d+)/)
+product.ht_box_price = match[1].to_f if match
+
+match = driver.find_element(css: '.d_flex.ai-center.col-gap-30.m-b-3.size-12 > span:nth-child(2)').text
+match = match.match(/(\d+\.\d+)/)
+product.ttc_box_price = match[1].to_f if match
+
+product.save!
+puts "#{product.name} créé !"
+# Assurez-vous d'abord que vous avez configuré et initialisé votre instance de WebDriver (driver) correctement.
+
+# Identifiez l'élément <li> que vous souhaitez cliquer (par exemple, "Caractéristiques")
+# li = driver.find_element(xpath: '//span[contains(@class, "weight-600") and contains(@class, "size-18") and contains(@class, "p-b-1") and contains(@class, "cursor-pointer") and contains(@class, "d_block") and contains(@class, "tablet:d_inline-block") and contains(@class, "m-b-2") and contains(@class, "border-b-2") and contains(@class, "border-solid") and contains(@class, "border-text") and contains(@class, "tablet:border-white")]
+# ')
+# li.click()
+# driver.manage.timeouts.implicit_wait = 10
+# description = driver.find_element(css: '.p-b-3.d_block > div > p').text
+# p description
+
+# li = driver.find_element(xpath: '//span[contains(@class, "weight-600") and contains(@class, "size-18") and contains(@class, "p-b-1") and contains(@class, "cursor-pointer") and contains(@class, "d_block") and contains(@class, "tablet:d_inline-block") and contains(@class, "m-b-2") and contains(@class, "border-b-2") and contains(@class, "border-solid") and contains(@class, "border-text") and contains(@class, "tablet:border-white")]
+# ')
+# li.click()
+# driver.manage.timeouts.implicit_wait = 10
+# specification = driver.find_element(css: '.p-b-3.d_block > div > p').text
+# p specification
+
+# li = driver.find_element(xpath: '(//span[contains(@class, "weight-600") and contains(@class, "size-18") and contains(@class, "p-b-1") and contains(@class, "cursor-pointer") and contains(@class, "d_block") and contains(@class, "tablet:d_inline-block") and contains(@class, "m-b-2") and contains(@class, "border-b-2") and contains(@class, "border-solid") and contains(@class, "border-text") and contains(@class, "tablet:border-white")])[2]')
+# li.click()
+# driver.manage.timeouts.implicit_wait = 10
+# conditionning = driver.find_element(css: '.p-b-3.d_block > div > p').text
+# p conditionning
+
 driver.quit
 
-# html = URI.open(url).read
-# doc = Nokogiri::HTML.parse(html)
-# puts doc
+#           conditionning:"Bouteille de 32cL
+#           24 bouteilles / fardeau
+#           72 fardeaux / palette
+#           8 fardeaux / couche
+#           9 couches / palette")
+
+
+
+
+
 
 
 # Créez une instance du navigateur web (par exemple, Chrome)
