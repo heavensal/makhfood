@@ -43,13 +43,10 @@ def create_product(driver, wait)
   begin
     img = wait.until { driver.find_element(xpath: '//*[@id="catalog_product_view-media_gallery"]//img').attribute('src') }
     if img
-      file = URI.open(img)
-      product.photo.attach(io: file, filename: "#{product.name.gsub(" ", "_")}.jpg", content_type: "image/jpg")
-      file.close
+      product.link = img
     end
   rescue Selenium::WebDriver::Error::TimeoutError
-  rescue IOError => e
-    puts "Erreur lors de l'ouverture ou de la fermeture du fichier image: #{e.message}"
+    product.link = nil
   end
 
   begin
