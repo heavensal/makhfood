@@ -1,7 +1,14 @@
-<h1><%= @product.name %></h1>
-
-<% if @product.link %>
-  <%= image_tag @product.link, height: 160, width: 160, crop: :fill %>
-<% end %>
-
-<p><%= @product.description %></p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <% if @product.link %>
+        <%= image_tag @product.link, class: 'img-fluid rounded shadow-lg', alt: @product.name %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h1 class="display-4 shadow-3 p-3"><%= @product.name %></h1>
+      <p class=" shadow-3 p-3"><%= @product.description %></p>
+      <!-- Ajouter ici d'autres détails sur le produit si nécessaire -->
+    </div>
+  </div>
+</div>

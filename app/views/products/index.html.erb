@@ -1,27 +1,22 @@
+<h1 class="my-5 text-center">Tous les produits</h1>
 
-  <h1 class="my-5 text-center">Tous les produits</h1>
-
-  <div class="container text-center">
-
-    <div class="row row-cols-lg-4 row-cols-md-2">
-      <% @products.each do |product| %>
-
-        <%= link_to product_path(product) do %>
-          <div class="col">
-
-            <div class="card">
-              <% if product.link %>
-                <%= image_tag product.link, width: 200, class: 'card-img-top' %>
-              <% end %>
-              <div class="card-body">
-                <p class="card-text"><%= product.name %></p>
+<div class="container text-center">
+  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 g-3">
+    <% @products.each do |product| %>
+      <%= link_to product_path(product), class: "text-decoration-none" do %>
+        <div class="col">
+          <div class="card h-100">
+            <% if product.link %>
+              <div class="square-image-container">
+                <%= image_tag product.link, class: 'w-100 h-100' %>
               </div>
+            <% end %>
+            <div class="card-body">
+              <p class="card-text"><%= product.name.capitalize %></p>
             </div>
-
           </div>
-        <% end %>
-
+        </div>
       <% end %>
-    </div>
-
+    <% end %>
   </div>
+</div>
