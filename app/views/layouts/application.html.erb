@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Makhfood</title>
+    <title>Makhfood Market</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,7 +11,9 @@
   </head>
 
   <body class="bg-white">
+    <%= render 'layouts/components/banner' %>
     <%= render 'layouts/navbar' %>
     <%= yield %>
+    <%= render 'layouts/components/infos-makhfood' %>
   </body>
 </html>
