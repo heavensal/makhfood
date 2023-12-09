@@ -12,3 +12,20 @@
     </div>
   </div>
 </div>
+
+<%= link_to 'Supprimer', product_path(@product), data: {turbo_method: :delete} %>
+
+<ul class="list-group">
+  <li class="list-group-item"><%= @product.sku %></li>
+  <li class="list-group-item"><%= @product.ean %></li>
+  <li class="list-group-item"><%= @product.unit_price %></li>
+  <li class="list-group-item"><%= @product.unit %></li>
+  <li class="list-group-item"><%= @product.box %></li>
+  <li class="list-group-item"><%= @product.price_per_unit %></li>
+  <li class="list-group-item"><%= @product.mesure_unit %></li>
+  <li class="list-group-item"><%= @product.tva %></li>
+  <li class="list-group-item"><%= @product.ht_box_price %></li>
+  <li class="list-group-item"><%= @product.ttc_box_price %></li>
+  <li class="list-group-item"><%= @product.brand.name %></li>
+  <li class="list-group-item"><%= @product.category.name %></li>
+</ul>

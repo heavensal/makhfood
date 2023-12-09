@@ -9,7 +9,6 @@
 #   end
 
 require 'selenium-webdriver'
-Product.destroy_all
 # Spécifiez le chemin vers le ChromeDriver si ce n'est pas dans votre PATH
 Selenium::WebDriver::Chrome::Service.driver_path = "/home/adam/chromedriver-linux64/chromedriver"
 
@@ -129,22 +128,23 @@ def create_product(driver, wait)
   puts "#{product.name} créé !"
 end
 
-driver.navigate.to 'https://www.centrale-ethnique.com/catalogsearch/result/?q=gulnur'
-driver.manage.timeouts.implicit_wait = 10
-main_window = driver.window_handle
-i = 1
 
-links = wait.until { driver.find_elements(css: '.product_infos.text-center > a') }
-links.each do |a|
-  driver.execute_script("window.open('#{a.attribute('href')}');")
-  driver.switch_to.window(driver.window_handles.last)
-  driver.manage.timeouts.implicit_wait = 5
-  create_product(driver, wait)
-  driver.close
-  driver.switch_to.window(main_window)
-end
+# driver.navigate.to 'https://www.centrale-ethnique.com/catalogsearch/result/?q=seven+up'
+# driver.manage.timeouts.implicit_wait = 10
+# main_window = driver.window_handle
+# i = 1
 
-driver.quit
+# links = wait.until { driver.find_elements(css: '.product_infos.text-center > a') }
+# links.each do |a|
+#   driver.execute_script("window.open('#{a.attribute('href')}');")
+#   driver.switch_to.window(driver.window_handles.last)
+#   driver.manage.timeouts.implicit_wait = 5
+#   create_product(driver, wait)
+#   driver.close
+#   driver.switch_to.window(main_window)
+# end
+
+# driver.quit
 # loop do
 # end
 
@@ -152,7 +152,7 @@ driver.quit
 # driver.navigate.to "https://central-hal.com/boutique/page/#{i}"
 # break if i > 34
 
-  # Mise à jour et vérification du bouton "Suivant"
+#   Mise à jour et vérification du bouton "Suivant"
 #   next_buttons = driver.find_elements(xpath: '//*[local-name()="svg" and contains(@class, "w-20p h-20p")]')
 #   if next_buttons.length > 1
 #     next_button = next_buttons[1]
@@ -163,3 +163,5 @@ driver.quit
 #   end
 
 # end
+
+# Capri-Sun
