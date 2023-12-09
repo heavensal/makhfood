@@ -3,6 +3,10 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def boissons
+    @products = Product.includes(:category).where(categories: { name: "Boissons" })
+  end
+
   def show
     @product = Product.find(params[:id])
   end

@@ -17,10 +17,8 @@ options = Selenium::WebDriver::Chrome::Options.new
 options.add_argument('--headless')
 options.add_argument('--disable-gpu')
 options.add_argument('--no-sandbox')
-driver = Selenium::WebDriver.for :chrome, options: options
-wait = Selenium::WebDriver::Wait.new(timeout: 7)
 
-def create_product(driver, wait)
+def create_product(driver, wait, marque)
   product = Product.new
 
   begin
@@ -124,44 +122,68 @@ def create_product(driver, wait)
   end
   puts product.ttc_box_price
 
+  product.brand = marque
+  product.category = Category.last
+
   product.save!
   puts "#{product.name} créé !"
 end
 
 
-# driver.navigate.to 'https://www.centrale-ethnique.com/catalogsearch/result/?q=seven+up'
-# driver.manage.timeouts.implicit_wait = 10
-# main_window = driver.window_handle
-# i = 1
+boissons = [
+  "Capri-Sun",
+  "Coca-Cola",
+  "Couleur Provence",
+  "Cristaline",
+  "Fanta",
+  "Freez",
+  "Gini",
+  "HawaI",
+  "Kas",
+  "Lipton",
+  "MayTea",
+  "Minute Maid",
+  "Mirinda",
+  "Monster",
+  "Oasis",
+  "Orangina",
+  "Pago",
+  "Pepsi",
+  "Perrier",
+  "Powerade",
+  "Pschitt",
+  "Pulco",
+  "Quebec",
+  "Red Bull",
+  "Sambo",
+  "San Pellegrino",
+  "Schweppes",
+  "Selecto",
+  "Sprite",
+  "Thonon",
+  "Tropico",
+  "Vals",
+  "Vitago"
+]
+boissons.each do |brand|
 
-# links = wait.until { driver.find_elements(css: '.product_infos.text-center > a') }
-# links.each do |a|
-#   driver.execute_script("window.open('#{a.attribute('href')}');")
-#   driver.switch_to.window(driver.window_handles.last)
-#   driver.manage.timeouts.implicit_wait = 5
-#   create_product(driver, wait)
-#   driver.close
-#   driver.switch_to.window(main_window)
-# end
+  driver = Selenium::WebDriver.for :chrome, options: options
+  wait = Selenium::WebDriver::Wait.new(timeout: 7)
 
-# driver.quit
-# loop do
-# end
+  driver.navigate.to "https://www.centrale-ethnique.com/catalogsearch/result/?q=#{brand}"
+  driver.manage.timeouts.implicit_wait = 10
+  main_window = driver.window_handle
 
-# i += 1
-# driver.navigate.to "https://central-hal.com/boutique/page/#{i}"
-# break if i > 34
+  links = wait.until { driver.find_elements(css: '.product_infos.text-center > a') }
+  links.each do |a|
+    driver.execute_script("window.open('#{a.attribute('href')}');")
+    driver.switch_to.window(driver.window_handles.last)
+    driver.manage.timeouts.implicit_wait = 5
+    marque = Brand.create(name: brand)
+    create_product(driver, wait, marque)
+    driver.close
+    driver.switch_to.window(main_window)
+  end
 
-#   Mise à jour et vérification du bouton "Suivant"
-#   next_buttons = driver.find_elements(xpath: '//*[local-name()="svg" and contains(@class, "w-20p h-20p")]')
-#   if next_buttons.length > 1
-#     next_button = next_buttons[1]
-#     next_button.click
-#     puts "page suivante !"
-#   else
-#     break # Sortir de la boucle si aucun bouton "Suivant"
-#   end
-
-# end
-
-# Capri-Sun
+  driver.quit
+end
