@@ -17,15 +17,16 @@
             <a class="nav-link active" aria-current="page" href="#">Demander un devis</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Tous les produits</a>
+            <%= link_to 'Tous les Produits', products_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Catégorie
             </a>
             <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><%= link_to 'Viandes', viandes_path, class: "dropdown-item" %></li>
+              <li><%= link_to 'Boissons', boissons_path, class: "dropdown-item" %></li>
+              <li><%= link_to 'Epicerie', epicerie_path, class: "dropdown-item" %></li>
               <li>
                 <hr class="dropdown-divider">
               </li>

@@ -1,3 +1,6 @@
+<%= link_to 'Modifier', edit_product_path(@product) %>
+
+<%= link_to 'Supprimer', product_path(@product), data: {turbo_method: :delete} %>
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-6">
@@ -7,19 +10,79 @@
     </div>
     <div class="col-md-6">
       <h1 class="display-4 shadow-3 p-3"><%= @product.name %></h1>
+
+      <table class="table table-primary table-striped">
+        <thead>
+          <tr class="table-primary">
+            <td>
+              INFORMATIONS
+            </td>
+          </tr>
+        </thead>
+
+        <tr class="table-primary">
+          <td>
+            SKU
+          </td>
+          <td>
+            <%= @product.sku %>
+          </td>
+        </tr>
+
+        <tr class="table-primary">
+          <td>
+            EAN
+          </td>
+          <td>
+            <%= @product.ean %>
+          </td>
+        </tr>
+
+        <tr class="table-primary">
+          <td>
+            Prix à l'unité
+          </td>
+          <td>
+            <%= @product.unit_price %> €
+          </td>
+        </tr>
+
+        <tr class="table-primary">
+          <td>
+            Mesure
+          </td>
+          <td>
+            <%= @product.unit %>
+          </td>
+        </tr>
+
+        <tr class="table-primary">
+          <td>
+            Mesure
+          </td>
+          <td>
+            <%= @product.unit %>
+          </td>
+        </tr>
+
+        <tr class="table-primary">
+          <td>
+            Mesure
+          </td>
+          <td>
+            <%= @product.box %>
+          </td>
+        </tr>
+
+      </table>
+
       <p class=" shadow-3 p-3"><%= @product.description %></p>
       <!-- Ajouter ici d'autres détails sur le produit si nécessaire -->
     </div>
   </div>
 </div>
 
-<%= link_to 'Supprimer', product_path(@product), data: {turbo_method: :delete} %>
-
 <ul class="list-group">
-  <li class="list-group-item"><%= @product.sku %></li>
-  <li class="list-group-item"><%= @product.ean %></li>
-  <li class="list-group-item"><%= @product.unit_price %></li>
-  <li class="list-group-item"><%= @product.unit %></li>
   <li class="list-group-item"><%= @product.box %></li>
   <li class="list-group-item"><%= @product.price_per_unit %></li>
   <li class="list-group-item"><%= @product.mesure_unit %></li>

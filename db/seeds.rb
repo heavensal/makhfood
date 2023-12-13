@@ -130,55 +130,19 @@ def create_product(driver, wait, marque)
 end
 
 
-boissons = [
-  "Capri-Sun",
-  "Coca-Cola",
-  "Couleur Provence",
-  "Cristaline",
-  "Fanta",
-  "Freez",
-  "Gini",
-  "HawaI",
-  "Kas",
-  "Lipton",
-  "MayTea",
-  "Minute Maid",
-  "Mirinda",
-  "Monster",
-  "Oasis",
-  "Orangina",
-  "Pago",
-  "Pepsi",
-  "Perrier",
-  "Powerade",
-  "Pschitt",
-  "Pulco",
-  "Quebec",
-  "Red Bull",
-  "Sambo",
-  "San Pellegrino",
-  "Schweppes",
-  "Selecto",
-  "Sprite",
-  "Thonon",
-  "Tropico",
-  "Vals",
-  "Vitago"
-]
+brand = "Cennet"
   driver = Selenium::WebDriver.for :chrome, options: options
   wait = Selenium::WebDriver::Wait.new(timeout: 7)
-
-
-brand = "Freez"
-
-
-  driver.navigate.to "https://www.centrale-ethnique.com/catalogsearch/result/?q=#{brand}"
+  driver.navigate.to "https://www.centrale-ethnique.com/catalogsearch/result/?q=Cennet+pot"
   driver.manage.timeouts.implicit_wait = 10
   main_window = driver.window_handle
 
   marque = Brand.create(name: brand)
   links = wait.until { driver.find_elements(css: '.product_infos.text-center > a') }
-  links[0..12].each do |a|
+  links[12...13].each do |a|
+  # links[12..23].each do |a|
+  # links[19..28].each do |a|
+
     driver.execute_script("window.open('#{a.attribute('href')}');")
     driver.switch_to.window(driver.window_handles.last)
     driver.manage.timeouts.implicit_wait = 5
