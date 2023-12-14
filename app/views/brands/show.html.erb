@@ -1,8 +1,12 @@
-<h1 class="my-5 text-center"><%= @brand.name %></h1>
+<h1 class="my-5 text-center">
+  <%= @brand.name %>
+  <br>
+  <%= @products.length %> produits
+</h1>
 
 
 <div class="container text-center">
-  <div class="row row-cols-lg-5 row-cols-md-2 row-cols-1 g-5">
+  <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-2">
 
     <% @products.each do |product| %>
         <div class="col" id="product_<%= product.id %>"%>
@@ -23,7 +27,7 @@
             </div>
 
           <% end %>
-          <%= link_to 'supprimer', product_path(product), class: 'btn btn-danger', data: {turbo_method: :delete} %>
+          <%# <%= link_to 'supprimer', product_path(product), class: 'btn btn-danger', data: {turbo_method: :delete} %>
         </div>
     <% end %>
 
