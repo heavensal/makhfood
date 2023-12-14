@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
   root 'products#index'
-  resources :products
-  get 'viandes', to: 'products#viandes', as: 'viandes'
-  get 'boissons', to: 'products#boissons', as: 'boissons'
-  get "epicerie", to: 'products#epicerie', as: 'epicerie'
   get 'pages/infos', to: 'pages#infos', as: 'infos'
+  resources :products
   resources :categories
   resources :brands
 

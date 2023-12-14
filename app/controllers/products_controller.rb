@@ -1,18 +1,11 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
-  end
+    @products = if params[:q].present?
+                  @q.result(distinct: true)
 
-  def boissons
-    @products = Product.includes(:category).where(categories: { name: "Boissons" })
-  end
-
-  def epicerie
-    @products = Product.includes(:category).where(categories: { name: "Epicerie" })
-  end
-
-  def viandes
-    @products = Product.includes(:category).where(categories: { name: "Viandes" })
+                else
+                  Product.all
+                end
   end
 
 

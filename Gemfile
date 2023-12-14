@@ -43,8 +43,9 @@ gem "bootsnap", require: false
 
 gem "cloudinary"
 gem "dotenv-rails"
-gem "nokogiri"
-gem "selenium-webdriver"
+# gem "nokogiri"
+# gem "selenium-webdriver"
+gem 'ransack', '~> 4.1', '>= 4.1.1'
 
 
 group :development, :test do
