@@ -130,16 +130,16 @@ def create_product(driver, wait, marque)
 end
 
 
-brand = "Cennet"
+brand = "Cristaline"
   driver = Selenium::WebDriver.for :chrome, options: options
   wait = Selenium::WebDriver::Wait.new(timeout: 7)
-  driver.navigate.to "https://www.centrale-ethnique.com/catalogsearch/result/?q=Cennet+pot"
+  driver.navigate.to "https://www.centrale-ethnique.com/catalogsearch/result/?q=Cristaline"
   driver.manage.timeouts.implicit_wait = 10
   main_window = driver.window_handle
 
   marque = Brand.create(name: brand)
   links = wait.until { driver.find_elements(css: '.product_infos.text-center > a') }
-  links[12...13].each do |a|
+  links[16...17].each do |a|
   # links[12..23].each do |a|
   # links[19..28].each do |a|
 

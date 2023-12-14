@@ -13,73 +13,37 @@
 
       <table class="table table-primary table-striped">
         <thead>
-          <tr class="table-primary">
+          <tr class="table-secondary">
             <td>
-              INFORMATIONS
+              Marque
+            </td>
+            <td>
+              Rangé dans la catégorie
+            </td>
+          </tr>
+          <tr class="table-secondary">
+            <td>
+              <%= @product.brand.name %>
+            </td>
+            <td>
+              <%= @product.category.name %>
             </td>
           </tr>
         </thead>
 
 <tr class="table-primary">
-          <td>
-            SKU
-          </td>
-          <td>
-            <%= @product.sku %>
-          </td>
-        </tr>
-        <tr class="table-primary">
-          <td>
-            EAN
-          </td>
-          <td>
-            <%= @product.ean %>
-          </td>
-        </tr>
-
+          <tr class="table-primary">
+            <td>
+              INFORMATIONS
+            </td>
+          </tr>
 
         <tr class="table-primary">
           <td>
-            Prix de la mesure
+            Mesure du Prix
           </td>
           <td>
-            <%= @product.unit_price %> €
-          </td>
-        </tr>
-
-        <tr class="table-primary">
-          <td>
-            Mesure
-          </td>
-          <td>
-            <%= @product.unit %>
-          </td>
-        </tr>
-
-        <tr class="table-primary">
-          <td>
-            Contenance
-          </td>
-          <td>
-            <%= @product.box %>
-          </td>
-        </tr>
-
-        <tr class="table-primary">
-          <td>
-            Prix à l'unité
-          </td>
-          <td>
-            <%= @product.price_per_unit %> €
-          </td>
-        </tr>
-
-        <tr class="table-primary">
-          <td>
-            Unité de mesure
-          </td>
-          <td>
-            <%= @product.mesure_unit %>
+            <%= @product.price_per_unit %> € / <%= @product.mesure_unit %>
           </td>
         </tr>
 
@@ -91,6 +55,17 @@
             <%= @product.tva %>%
           </td>
         </tr>
+
+        <tr class="table-primary">
+          <td>
+            VENDU PAR
+          </td>
+          <td>
+            <%= @product.box %>
+          </td>
+        </tr>
+
+
 
         <tr class="table-primary">
           <td>
@@ -110,23 +85,7 @@
           </td>
         </tr>
 
-        <tr class="table-primary">
-          <td>
-            Marque
-          </td>
-          <td>
-            <%= @product.brand.name %>
-          </td>
-        </tr>
 
-        <tr class="table-primary">
-          <td>
-            Rangé dans la catégorie
-          </td>
-          <td>
-            <%= @product.category.name %>
-          </td>
-        </tr>
 
 
 
