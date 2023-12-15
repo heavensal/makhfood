@@ -95,7 +95,7 @@
       <div>
         <%= form_with url: quote_items_path, method: :post do %>
           <%= hidden_field_tag :product_id, @product.id %>
-          <%= submit_tag "Ajouter au devis" %>
+          <%= submit_tag "Ajouter au devis", class: "btn btn-primary" %>
         <% end %>
 
       </div>

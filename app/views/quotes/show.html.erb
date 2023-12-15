@@ -36,12 +36,26 @@
     <td>
       <%= item.product.box %>
     </td>
+
     <td>
-      <%= form_with model: item, url: quote_item_path(item), method: :patch, local: true do |f| %>
-        <%= f.number_field :quantity, value: item.quantity %>
-        <%= f.submit "Mettre à jour" %>
-      <% end %>
+      <div class="d-flex flex-wrap gx-1">
+        <div class="d-flex flex-wrap">
+          <%= form_with model: item, url: quote_item_path(item), method: :patch, local: true, class: "d-flex flex-wrap" do |f| %>
+          <div>
+              <%= f.number_field :quantity, value: item.quantity, class: "form-control" %>
+          </div>
+          <div>
+              <%= f.submit "✔️", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+
+        <div>
+          <%= link_to '❌', quote_item_path(item), data: {turbo_method: :delete}, class: "btn btn-danger" %>
+        </div>
+      </div>
     </td>
+
   </tr>
 <% end %>
 

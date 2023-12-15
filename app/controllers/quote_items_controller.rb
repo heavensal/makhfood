@@ -20,6 +20,9 @@ class QuoteItemsController < ApplicationController
   end
 
   def destroy
+    @quote_item = QuoteItem.find(params[:id])
+    @quote_item.destroy
+    redirect_to quote_path
   end
 
   private
