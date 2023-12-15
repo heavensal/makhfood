@@ -92,6 +92,13 @@
       </table>
 
       <p class=" shadow-3 p-3"><%= @product.description %></p>
+      <div>
+        <%= form_with url: quote_items_path, method: :post do %>
+          <%= hidden_field_tag :product_id, @product.id %>
+          <%= submit_tag "Ajouter au devis" %>
+        <% end %>
+
+      </div>
       <!-- Ajouter ici d'autres détails sur le produit si nécessaire -->
     </div>
   </div>

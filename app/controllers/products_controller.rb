@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @quote_item = QuoteItem.new
   end
 
   def new

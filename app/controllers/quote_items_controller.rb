@@ -10,8 +10,21 @@ class QuoteItemsController < ApplicationController
   end
 
   def update
+    @quote_item = QuoteItem.find(params[:id])
+    @quote_item.update(quote_item_params)
+    if @quote_item.save
+      redirect_to quote_path
+    else
+      redirect_to root_path
+    end
   end
 
   def destroy
+  end
+
+  private
+
+  def quote_item_params
+    params.require(:quote_item).permit(:quantity)
   end
 end
