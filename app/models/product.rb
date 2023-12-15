@@ -3,6 +3,9 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :brand
 
+  has_many :quote_items
+  has_many :quotes, through: :quote_items
+
   def self.ransackable_associations(auth_object = nil)
     %w[brand category]
   end
