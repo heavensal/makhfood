@@ -152,3 +152,15 @@
 #   end
 
 #   driver.quit
+
+
+require "open-uri"
+
+products = Product.all
+products.each do |prod|
+  file = URI.open(prod.link)
+  name = prod.name.gsub(' ', '_')
+  prod.photo.attach(io: file, filename: "#{name}.jpg", content_type: "image/jpg")
+  prod.save!
+  puts "#{prod.name} FAIT !!!"
+end
