@@ -8,7 +8,7 @@
     </button>
     <div class="offcanvas offcanvas-end text-bg-secondary" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Makhfood Market</h5>
+        <h5 class="offcanvas-title mx-auto" id="offcanvasDarkNavbarLabel">MAKHFOOD MARKET</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -16,15 +16,24 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
           <li class="nav-item">
-            <%= link_to 'Gérer mon devis', quote_path, class: 'nav-link' %>
+            <%= link_to 'Gérer mon devis', quote_path, class: 'nav-link text-bg-secondary' %>
           </li>
 
+        </ul>
+
+        <%= search_form_for @q, class: "d-flex mt-3" do |f| %>
+          <%= f.label :name_or_category_name_cont, hidden: true %>
+          <%= f.search_field :name_or_category_name_cont, class: "form-control me-2", placeholder: "Chercher un produit" %>
+          <%= f.submit "Rechercher", class: "btn btn-primary" %>
+        <% end %>
+
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <%= link_to 'Tous les Produits', products_path, class: "nav-link" %>
+            <%= link_to 'Tous les Produits', products_path, class: "nav-link text-bg-secondary" %>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-bg-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Catégories
             </a>
 
@@ -42,7 +51,7 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-bg-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Marques
             </a>
 
@@ -53,21 +62,17 @@
                 <hr class="dropdown-divider">
               </li>
               <% Brand.all.order(:name).each do |b| %>
-                <li><%= link_to b.name, brand_path(b), class: "dropdown-item" %></li>
+                <li>
+                  <%= link_to b.name, brand_path(b), class: "dropdown-item" %>
+                </li>
               <% end %>
 
             </ul>
           </li>
-
-
-
         </ul>
 
-        <%= search_form_for @q, class: "d-flex mt-3" do |f| %>
-          <%= f.label :name_or_category_name_cont, hidden: true %>
-          <%= f.search_field :name_or_category_name_cont, class: "form-control me-2", placeholder: "Chercher un produit" %>
-          <%= f.submit "Rechercher", class: "btn btn-primary" %>
-        <% end %>
+
+
       </div>
     </div>
   </div>
