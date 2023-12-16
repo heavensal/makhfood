@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::Base
   before_action :search
   before_action :initialize_quote
+  before_action :initialize_db
 
   private
+
+  def initialize_db
+    @products = Product.all
+    @categories = Category.all
+    @brands = Brand.all
+  end
 
   def initialize_quote
     if session[:quote_id].blank?

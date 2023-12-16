@@ -1,0 +1,67 @@
+
+<div class="position-sticky start-0 top-50 p-1 translate-middle-y">
+
+  <%= search_form_for q, class: "d-flex bg-secondary-subtle mx-auto mt-3" do |f| %>
+    <%= f.label :name_or_category_name_cont, hidden: true %>
+    <%= f.search_field :name_or_category_name_cont, class: "form-control me-2 w-50", placeholder: "Chercher un produit" %>
+    <%= f.submit "Rechercher", class: "btn btn-primary" %>
+  <% end %>
+
+  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+    <li class="nav-item">
+      <%= link_to 'Tous les Produits', products_path, class: "nav-link text-bg-secondary" %>
+    </li>
+
+    <li class="nav-item dropend">
+      <a class="nav-link dropdown-toggle text-bg-secondary-subtle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Catégories
+      </a>
+
+
+      <select class="form-select" aria-label="Default select example">
+        <option selected>Catégories</option>
+
+        <option value="1"><%= link_to 'Toutes les catégories', categories_path %></option>
+        <% categories.order(:name).each_with_index do |cat, i| %>
+          <option value="<%= i %>"><%= link_to cat.name, category_path(cat) %></option>
+        <% end %>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+      </select>
+
+      <ul class="dropdown-menu dropdown-menu-dark z-3">
+        <li><%= link_to 'Toutes les catégories', categories_path, class: "dropdown-item" %></li>
+
+
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <% categories.order(:name).each do |cat| %>
+          <li><%= link_to cat.name, category_path(cat), class: "dropdown-item" %></li>
+        <% end %>
+
+      </ul>
+    </li>
+
+    <li class="nav-item dropend">
+      <a class="nav-link dropdown-toggle text-bg-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Marques
+      </a>
+
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><%= link_to 'Toutes les marques', brands_path, class: "dropdown-item" %></li>
+
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <% brands.order(:name).each do |b| %>
+          <li>
+            <%= link_to b.name, brand_path(b), class: "dropdown-item" %>
+          </li>
+        <% end %>
+
+      </ul>
+    </li>
+  </ul>
+</div>
