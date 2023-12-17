@@ -61,4 +61,16 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'mail.makhfoodmarket.fr', # Adresse du serveur SMTP
+    port:                 465,                # Port du serveur SMTP
+    domain:               'makhfoodmarket.fr',      # Domaine de votre application
+    user_name:            'devis@makhfoodmarket.fr',         # Nom d'utilisateur SMTP
+    password:             ENV['MAIL_PASSWORD'],         # Mot de passe SMTP
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
 end

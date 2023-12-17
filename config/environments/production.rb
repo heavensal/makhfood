@@ -71,6 +71,16 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
+  config.action_mailer.smtp_settings = {
+    address:              'mail.makhfoodmarket.fr', # Adresse du serveur SMTP
+    port:                 465,                # Port du serveur SMTP
+    domain:               'makhfoodmarket.fr',      # Domaine de votre application
+    user_name:            'devis@makhfoodmarket.fr',         # Nom d'utilisateur SMTP
+    password:             ENV['MAIL_PASSWORD'],         # Mot de passe SMTP
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
   # Enable DNS rebinding protection and other `Host` header attacks.
   # config.hosts = [
   #   "example.com",     # Allow requests from example.com
