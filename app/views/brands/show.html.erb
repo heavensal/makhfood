@@ -1,35 +1,5 @@
 <h1 class="my-5 text-center">
   <%= @brand.name %>
-  <br>
-  <%= @products.length %> produits
 </h1>
 
-
-<div class="container text-center">
-  <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1 g-2">
-
-    <% @products.each do |product| %>
-        <div class="col" id="product_<%= product.id %>"%>
-          <%= link_to product_path(product), class: "text-decoration-none" do %>
-
-            <div class="card bg-dark text-white h-100">
-
-              <% if product.link %>
-                <div class="square-image-container">
-                  <%= image_tag product.link, class: 'w-100 h-100' %>
-                </div>
-              <% end %>
-
-              <div class="card-body">
-                <p class="card-text"><%= product.name.capitalize %></p>
-              </div>
-
-            </div>
-
-          <% end %>
-          <%# <%= link_to 'supprimer', product_path(product), class: 'btn btn-danger', data: {turbo_method: :delete} %>
-        </div>
-    <% end %>
-
-  </div>
-</div>
+<%= render 'layouts/index/all', q: @q, categories: @categories, brands: @brands, products: @products %>

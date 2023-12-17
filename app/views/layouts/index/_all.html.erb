@@ -1,0 +1,11 @@
+<div class="row w-100 justify-content-center">
+
+  <div class="col-3 d-none d-lg-block sticky-top">
+    <%= render 'layouts/index/filter', q: q, categories: categories, brands: brands %>
+  </div>
+
+  <div class="col-8 text-center">
+   <%= render 'layouts/index/products', products: products %>
+  </div>
+
+</div>

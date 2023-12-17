@@ -1,54 +1,5 @@
-<h1 class="my-5 text-center"><%= @category.name %></h1>
+<h1 class="my-5 text-center">
+  <%= @category.name %>
+</h1>
 
-
-<div class="container text-center">
-<h2 class="my-3">Nos Marques</h2>
-  <div class="row row-cols-lg-5 row-cols-md-2 row-cols-1 gy-5 gx-1">
-    <% @brands.each do |brand| %>
-        <div class="col" id="brand_<%= brand.id %>"%>
-          <%= link_to brand_path(brand), class: "text-decoration-none" do %>
-
-            <div class="card bg-dark text-white h-100">
-
-
-              <div class="card-body">
-                <p class="card-text"><%= brand.name %></p>
-              </div>
-
-            </div>
-
-          <% end %>
-        </div>
-    <% end %>
-  </div>
-
-  <div class="row row-cols-lg-3 row-cols-md-2 row-cols-1 gx-1 gy-5">
-
-    <% @products.each do |product| %>
-        <div class="col" id="product_<%= product.id %>"%>
-          <%= link_to product_path(product), class: "text-decoration-none" do %>
-
-            <div class="card border h-100">
-
-              <% if product.link %>
-                <div class="square-image-container">
-                  <%= cl_image_tag product.photo.key, class: 'w-75' %>
-                </div>
-              <% end %>
-
-              <div class="card-body">
-                <p class="card-text">
-                  <%= product.name.capitalize %>
-                </p>
-              </div>
-
-            </div>
-
-          <% end %>
-          <%# <%= link_to 'supprimer', product_path(product), class: 'btn btn-danger', data: {turbo_method: :delete} %>
-        </div>
-    <% end %>
-
-  </div>
-
-</div>
+<%= render 'layouts/index/all', q: @q, categories: @categories, brands: @brands, products: @products %>

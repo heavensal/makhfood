@@ -8,11 +8,6 @@ class ProductsController < ApplicationController
                 end
   end
 
-
-  # def create
-
-  # end
-
   def show
     @product = Product.find(params[:id])
     @quote_item = QuoteItem.new

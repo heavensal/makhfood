@@ -31,30 +31,7 @@
           </tr>
         </thead>
 
-<tr class="table-primary">
-          <tr class="table-primary">
-            <td>
-              INFORMATIONS
-            </td>
-          </tr>
 
-        <tr class="table-primary">
-          <td>
-            Mesure du Prix
-          </td>
-          <td>
-            <%= @product.price_per_unit %> € / <%= @product.mesure_unit %>
-          </td>
-        </tr>
-
-        <tr class="table-primary">
-          <td>
-            TVA applicable
-          </td>
-          <td>
-            <%= @product.tva %>%
-          </td>
-        </tr>
 
         <tr class="table-primary">
           <td>
@@ -67,31 +44,8 @@
 
 
 
-        <tr class="table-primary">
-          <td>
-            Coût de vente HT
-          </td>
-          <td>
-            <%= @product.ht_box_price %> €
-          </td>
-        </tr>
 
-        <tr class="table-primary">
-          <td>
-            Coût de vente TTC
-          </td>
-          <td>
-            <%= @product.ttc_box_price %> €
-          </td>
-        </tr>
-
-
-
-
-
-      </table>
-
-      <p class=" shadow-3 p-3"><%= @product.description %></p>
+</table>
       <div>
         <%= form_with url: quote_items_path, method: :post do %>
           <%= hidden_field_tag :product_id, @product.id %>

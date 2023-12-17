@@ -1,6 +1,7 @@
- <section class="row row-cols-lg-3 row-cols-md-2 row-cols-1 gx-1 gy-5">
+<span class="text-secondary"><%= products.length %> produits</span>
+<section class="row row-cols-lg-3 row-cols-md-2 row-cols-1 gx-1 gy-5">
 
-  <% products.each do |product| %>
+  <% products.each_with_index do |product, i| %>
 
     <div class="col p-3" id="product_<%= product.id %>"%>
       <%= link_to product_path(product), class: "text-decoration-none text-dark" do %>
@@ -21,3 +22,12 @@
   <% end %>
 
 </section>
+
+
+<style>
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+</style>
