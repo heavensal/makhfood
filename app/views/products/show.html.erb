@@ -11,19 +11,19 @@
     <div class="col-md-6">
       <h1 class="display-4 shadow-3 p-3"><%= @product.name %></h1>
 
-      <table class="table table-primary table-striped">
+      <table class="table table-warning table-bordered table-striped-columns">
         <thead>
-          <tr class="table-secondary">
+          <tr class="">
             <td>
               Marque
             </td>
             <td>
-              Rangé dans la catégorie
+              <%= @product.brand.name %>
             </td>
           </tr>
-          <tr class="table-secondary">
+          <tr class="">
             <td>
-              <%= @product.brand.name %>
+              Rangé dans la catégorie
             </td>
             <td>
               <%= @product.category.name %>
@@ -45,13 +45,12 @@
 
 
 
-</table>
-      <div>
+      </table>
+      <div class="text-center">
         <%= form_with url: quote_items_path, method: :post do %>
           <%= hidden_field_tag :product_id, @product.id %>
           <%= submit_tag "Ajouter au devis", class: "btn btn-primary" %>
         <% end %>
-
       </div>
       <!-- Ajouter ici d'autres détails sur le produit si nécessaire -->
     </div>

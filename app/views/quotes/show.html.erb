@@ -1,73 +1,53 @@
-<h1 class="text-center my-5">Mon Devis</h1>
-<%= @quote_items %>
-<% if @quote_items != [] %>
-  <table class="table table-primary table-striped table-hover w-75 mx-auto">
+<h1 class="text-center my-5">
+  Mon Devis
+</h1>
 
-    <thead class="w-75 mx-auto">
-      <tr class="table-secondary">
-        <td>
-          CATEGORIE
-        </td>
-        <td>
-          MARQUE
-        </td>
-        <td>
-          PRODUIT
-        </td>
-        <td>
-          VENDU PAR
-        </td>
-        <td>
-          QUANTITE
-        </td>
-      </tr>
-    </thead>
+<% if @quote_items.any? %>
+  <table class="table table-primary table-striped table-hover table-bordered w-75 mx-auto">
+    <% @quote_items.group_by { |item| item.product.category }.each do |category, items| %>
+            <thead class="w-75 mx-auto">
+                <tr class="table-success">
+                    <td colspan="3">
+                      <%= link_to category.name.upcase, category_path(category), class: "text-decoration-none text-dark" %>
+                    </td>
+                </tr>
+            </thead>
+      <tbody>
+        <% items.each do |item| %>
+          <tr class="table-primary">
+            <td>
+              <%= link_to item.product.name, product_path(item.product), class: "text-decoration-none text-dark" %>
+            </td>
+            <td>
+              <%= item.product.box %>
+            </td>
 
-    <% @quote_items.each do |item| %>
-      <tr class="table-primary">
-        <td>
-          <%= item.product.category.name %>
-        </td>
-        <td>
-          <%= item.product.brand.name %>
-        </td>
-        <td>
-          <%= item.product.name %>
-        </td>
-        <td>
-          <%= item.product.box %>
-        </td>
+            <td>
+             <div class="d-flex flex-wrap gx-1">
+                <div class="d-flex flex-wrap">
+                  <%= form_with model: item, url: quote_item_path(item), method: :patch, local: true, class: "d-flex flex-wrap" do |f| %>
+                    <div>
+                        <%= f.number_field :quantity, value: item.quantity, class: "form-control" %>
+                    </div>
+                    <div>
+                        <%= f.submit "✔️", class: "btn btn-primary" %>
+                    </div>
+                  <% end %>
+                </div>
 
-        <td>
-          <div class="d-flex flex-wrap gx-1">
-            <div class="d-flex flex-wrap">
-              <%= form_with model: item, url: quote_item_path(item), method: :patch, local: true, class: "d-flex flex-wrap" do |f| %>
-              <div>
-                  <%= f.number_field :quantity, value: item.quantity, class: "form-control" %>
+                <div>
+                  <%= link_to '❌', quote_item_path(item), data: {turbo_method: :delete}, class: "btn btn-danger" %>
+                </div>
               </div>
-              <div>
-                  <%= f.submit "✔️", class: "btn btn-primary" %>
-              </div>
-              <% end %>
-            </div>
+            </td>
 
-            <div>
-              <%= link_to '❌', quote_item_path(item), data: {turbo_method: :delete}, class: "btn btn-danger" %>
-            </div>
-          </div>
-        </td>
-
-      </tr>
+          </tr>
+        <% end %>
+      </tbody>
     <% end %>
-
-
-
-
-
-
-
-
   </table>
+
+
 <% else %>
   <h2 class="text-center">
     Votre devis est vide pour le moment. Allez sur un produit pour l'ajouter à votre devis.

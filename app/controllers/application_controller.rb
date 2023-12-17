@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def initialize_db
-    @products = Product.all
+    @products = Product.includes(:category, :brand)
     @categories = Category.all
     @brands = Brand.all
   end
