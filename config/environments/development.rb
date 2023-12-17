@@ -64,13 +64,13 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'mail.makhfoodmarket.fr', # Adresse du serveur SMTP
-    port:                 465,                # Port du serveur SMTP
-    domain:               'https://www.makhfoodmarket.fr',      # Domaine de votre application
-    user_name:            'devis@makhfoodmarket.fr',         # Nom d'utilisateur SMTP
-    password:             "Makhfood84!",         # Mot de passe SMTP
-    authentication:       'plain',
-    ssl:                   true
+    address:              ENV['ADDRESS'], # Adresse du serveur SMTP
+    port:                 ENV['PORT'],                # Port du serveur SMTP
+    domain:               ENV['DOMAIN'],      # Domaine de votre application
+    user_name:            ENV['USERNAME'],         # Nom d'utilisateur SMTP
+    password:             ENV['MAIL_PASSWORD'],         # Mot de passe SMTP
+    authentication:       ENV['AUTHENTICATION'],
+    ssl:                  ENV['SSL']
   }
 
 end
