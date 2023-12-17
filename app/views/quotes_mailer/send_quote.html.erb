@@ -1,5 +1,34 @@
-<h1>Quotes#send_quote</h1>
+<h1>
+  Demande de devis n° <%= @quote.id %>
+</h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/quotes_mailer/send_quote.html.erb
-</p>
+<table class="table table-primary table-striped table-hover table-bordered w-75 mx-auto">
+    <% @quote_items.group_by { |item| item.product.category }.each do |category, items| %>
+            <thead class="w-75 mx-auto">
+                <tr class="table-success">
+                    <td colspan="3">
+                      <%= category.name.upcase %>
+                    </td>
+                </tr>
+            </thead>
+      <tbody>
+        <% items.each do |item| %>
+          <tr class="table-primary">
+
+            <td>
+              <%= item.product.name %>
+            </td>
+
+            <td>
+              <%= item.product.box %>
+            </td>
+
+            <td>
+              <%= item.quantity %>
+            </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  </table>

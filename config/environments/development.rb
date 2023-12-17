@@ -66,11 +66,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              'mail.makhfoodmarket.fr', # Adresse du serveur SMTP
     port:                 465,                # Port du serveur SMTP
-    domain:               'makhfoodmarket.fr',      # Domaine de votre application
+    domain:               'https://www.makhfoodmarket.fr',      # Domaine de votre application
     user_name:            'devis@makhfoodmarket.fr',         # Nom d'utilisateur SMTP
-    password:             ENV['MAIL_PASSWORD'],         # Mot de passe SMTP
+    password:             "Makhfood84!",         # Mot de passe SMTP
     authentication:       'plain',
-    enable_starttls_auto: true
+    ssl:                   true
   }
 
 end

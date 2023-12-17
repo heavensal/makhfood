@@ -6,4 +6,10 @@ class QuotesController < ApplicationController
     }
     @products = @quote.products
   end
+
+  def send_my_quote
+    @quote_id = Quote.find(session[:quote_id])
+    QuotesMailer.send_quote(@quote_id).deliver_now!
+    redirect_to root_path
+  end
 end

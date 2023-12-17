@@ -5,9 +5,13 @@ class QuotesMailer < ApplicationMailer
   #
   #   en.quotes_mailer.send_quote.subject
   #
-  def send_quote
-    @greeting = "Hi"
+  def send_quote(quote)
+    @quote = Quote.find(quote[:id])
+    @quote_items = @quote.quote_items.includes(product: [:category, :brand]).sort_by { |item|
+      [item.product.category.name, item.product.brand.name]
+    }
+    @products = @quote.products
 
-    mail to: "to@example.org"
+    mail(to: "commande@makhfoodmarket.fr", subject: "Demande devis n° #{@quote.id}")
   end
 end

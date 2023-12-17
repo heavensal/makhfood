@@ -47,12 +47,20 @@
     <% end %>
   </table>
 
+<div class="text-center">
+  <%= link_to 'Ajouter un autre produit', products_path, class: "btn btn-secondary" %>
+  <%= link_to 'Envoyer le Devis', send_my_quote_path(@quote), class: "btn btn-primary" %>
+</div>
+
+
+
 
 <% else %>
   <h2 class="text-center">
     Votre devis est vide pour le moment. Allez sur un produit pour l'ajouter à votre devis.
   </h2>
+
+  <div class="text-center">
+    <%= link_to 'Ajouter un autre produit', products_path, class: "btn btn-secondary" %>
+  </div>
 <% end %>
-<div class="text-center">
-  <%= link_to 'Ajouter un autre produit', products_path, class: "btn btn-secondary" %>
-</div>
