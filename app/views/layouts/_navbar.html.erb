@@ -1,4 +1,4 @@
-<nav class="navbar bg-secondary-subtle border-bottom sticky-top">
+<nav class="navbar bg-primary-subtle border-bottom sticky-top">
   <div class="container-fluid">
     <%= link_to products_path do %>
       <%= image_tag 'makhfood_no_bg.png', width:"80" %>
@@ -6,7 +6,7 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-end text-bg-secondary" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="offcanvas offcanvas-end bg-primary-subtle" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title mx-auto" id="offcanvasDarkNavbarLabel">MAKHFOOD MARKET</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -16,7 +16,7 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
           <li class="nav-item">
-            <%= link_to 'Gérer mon devis', quote_path, class: 'nav-link text-bg-secondary' %>
+            <%= link_to 'Gérer mon devis', quote_path, class: 'nav-link text-bg-primary' %>
           </li>
 
         </ul>
@@ -24,26 +24,26 @@
         <%= search_form_for @q, class: "d-flex mt-3" do |f| %>
           <%= f.label :name_or_category_name_cont, hidden: true %>
           <%= f.search_field :name_or_category_name_cont, class: "form-control me-2", placeholder: "Chercher un produit" %>
-          <%= f.submit "Rechercher", class: "btn btn-primary" %>
+          <%= f.submit "Rechercher", class: "btn btn-success" %>
         <% end %>
 
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <%= link_to 'Tous les Produits', products_path, class: "nav-link text-bg-secondary" %>
+            <%= link_to 'Tous les Produits', products_path, class: "nav-link text-bg-primary" %>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-bg-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-bg-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Catégories
             </a>
 
-            <ul class="dropdown-menu dropdown-menu-dark">
+            <ul class="dropdown-menu dropdown-menu bg-primary-subtle text-primary-emphasis">
               <li><%= link_to 'Toutes les catégories', categories_path, class: "dropdown-item" %></li>
 
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <% Category.all.order(:name).each do |cat| %>
+              <% @categories.order(:name).each do |cat| %>
                 <li><%= link_to cat.name, category_path(cat), class: "dropdown-item" %></li>
               <% end %>
 
@@ -51,7 +51,7 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-bg-secondary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-bg-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Marques
             </a>
 
@@ -61,7 +61,7 @@
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <% Brand.all.order(:name).each do |b| %>
+              <% @brands.order(:name).each do |b| %>
                 <li>
                   <%= link_to b.name, brand_path(b), class: "dropdown-item" %>
                 </li>
