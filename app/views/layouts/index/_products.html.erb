@@ -3,17 +3,16 @@
 
   <% products.each_with_index do |product, i| %>
 
-    <div class="col p-3" id="product_<%= product.id %>"%>
+    <div class="col p-3 hover-card" id="product_<%= product.id %>"%>
       <%= link_to product_path(product), class: "text-decoration-none text-dark" do %>
 
+        <div class="square-image-container">
+          <%= cl_image_tag product.photo.key, class: 'w-100' %>
+        </div>
 
-            <div class="square-image-container">
-              <%= cl_image_tag product.photo.key, class: 'w-100' %>
-            </div>
-
-            <p class="px-5">
-              <%= product.name %>
-            </p>
+        <p class="px-5">
+          <%= product.name %>
+        </p>
 
 
       <% end %>
@@ -25,9 +24,11 @@
 
 
 <style>
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
 
+  .hover-card {
+    transition: transform 0.3s ease;
+  }
+  .hover-card:hover {
+    transform: scale(1.1);
+  }
 </style>
