@@ -32,7 +32,7 @@
 
       <% categories.order(:name).each do |cat| %>
         <%= link_to category_path(cat), class: "text-decoration-none text-dark" do %>
-          <li class="list-group-item list-group-item-action list-group-item-info">
+          <li class="list-group-item list-group-item-action list-group-item-secondary">
             <%= cat.name %>
           </li>
         <% end %>
@@ -52,7 +52,7 @@
       <ul id="collapsing-2" class="accordion-collapse collapse overflow-y-scroll list-group list-group-flush" style="max-height: 25vh; overflow-y: auto;">
         <% brands.order(:name).each do |b| %>
           <%= link_to brand_path(b), class: "text-decoration-none text-dark" do %>
-            <li class="list-group-item list-group-item-action list-group-item-info">
+            <li class="list-group-item list-group-item-action list-group-item-secondary">
               <%= b.name %>
             </li>
           <% end %>

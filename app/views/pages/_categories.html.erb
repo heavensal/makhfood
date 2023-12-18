@@ -1,0 +1,10 @@
+<h2 class="my-5">
+  Consulter nos produits par catégorie
+</h2>
+  <section class="row text-center">
+    <% categories.each do |cat| %>
+      <div class="col-2 border border-2">
+        <%= cat.name %>
+      </div>
+    <% end %>
+  </section>

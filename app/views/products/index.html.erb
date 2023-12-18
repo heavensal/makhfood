@@ -1,4 +1,4 @@
-<h1 class="my-5 text-center">
+<h1 class="my-5 text-center text-primary">
   Tous les produits
   <% if @q && @q.conditions.any? %>
     correspondant à "<%= @q.conditions.map(&:value).join(", ") %>"
