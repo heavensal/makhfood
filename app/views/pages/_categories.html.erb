@@ -1,20 +1,37 @@
 <h2 class="my-5 text-primary">
   Consulter nos produits par catégorie
 </h2>
-  <section class="row text-center">
-    <% categories.each do |cat| %>
-      <div class="col-2 border border-2">
+<section class="row text-center g-0 bg-warning-subtle p-5">
 
-        <%= link_to category_path(cat), class: "text-decoration-none" do %>
-          <div class="card">
-            <% if cat.link %>
-              <%= image_tag cat.link, class: "card-img-top h-50" %>
-            <% end %>
-            <div class="card-body">
-              <%= cat.name %>
-            </div>
-          </div>
-        <% end %>
+  <!-- Première colonne plus grande -->
+  <div class="col-md-4 col-12">
+    <%= link_to products_path, class: "text-decoration-none" do %>
+      <div class="card">
+        <%= image_tag 'tous_les_produits.png', class: "img-fluid card-img-top" %>
+        <div class="card-body bg-warning text-white">
+          Tous nos Produits
+        </div>
       </div>
     <% end %>
-  </section>
+
+
+  </div>
+
+  <!-- Autres colonnes -->
+  <% categories.each do |cat| %>
+    <div class="col-2">
+      <%= link_to category_path(cat), class: "text-decoration-none" do %>
+        <div class="position-relative">
+          <% if cat.link %>
+            <%= image_tag cat.link, class: "card-img-top img-fluid w-100 h-100", style: "object-fit: cover;" %>
+          <% end %>
+          <div class="position-absolute top-50 start-50 translate-middle">
+            <p class="text-white bg-dark p-1">
+              <%= cat.name %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</section>
