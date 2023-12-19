@@ -7,7 +7,12 @@
 
         <%= link_to category_path(cat), class: "text-decoration-none" do %>
           <div class="card">
-            <%= cat.name %>
+            <% if cat.link %>
+              <%= image_tag cat.link, class: "card-img-top h-50" %>
+            <% end %>
+            <div class="card-body">
+              <%= cat.name %>
+            </div>
           </div>
         <% end %>
       </div>

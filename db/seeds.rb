@@ -155,16 +155,22 @@
 #   driver.quit
 
 
-require "open-uri"
+# require "open-uri"
 
-products = Product.joins(:brand).where(brands: { name: "Nawhal's" })
-products.each do |prod|
-  file = URI.open(prod.link)
-  name = prod.name.gsub(' ', '_')
-  prod.photo.attach(io: file, filename: "#{name}.jpg", content_type: "image/jpg")
-  prod.save!
-  puts "#{prod.name} FAIT !!!"
-end
+# products = Product.joins(:brand).where(brands: { name: "Nawhal's" })
+# products.each do |prod|
+#   file = URI.open(prod.link)
+#   name = prod.name.gsub(' ', '_')
+#   prod.photo.attach(io: file, filename: "#{name}.jpg", content_type: "image/jpg")
+#   prod.save!
+#   puts "#{prod.name} FAIT !!!"
+# end
+
+# p = Product.all
+# p.each do |p|
+#   p.update!(box: p.box.downcase)
+#   puts p.box
+# end
 
 # ActiveRecord::Base.transaction do
 #   duplicated_brand_names = Brand.group(:name).having("COUNT(*) > 1").pluck(:name)
