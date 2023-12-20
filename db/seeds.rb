@@ -155,16 +155,16 @@
 #   driver.quit
 
 
-# require "open-uri"
+require "open-uri"
 
-# products = Product.joins(:brand).where(brands: { name: "Nawhal's" })
-# products.each do |prod|
-#   file = URI.open(prod.link)
-#   name = prod.name.gsub(' ', '_')
-#   prod.photo.attach(io: file, filename: "#{name}.jpg", content_type: "image/jpg")
-#   prod.save!
-#   puts "#{prod.name} FAIT !!!"
-# end
+categories = Category.all
+categories.each do |cat|
+  file = URI.open(cat.link)
+  name = cat.name.gsub(' ', '_')
+  cat.photo.attach(io: file, filename: "#{name}.jpg", content_type: "image/jpg")
+  cat.save!
+  puts "#{cat.name} FAIT !!!"
+end
 
 # p = Product.all
 # p.each do |p|
