@@ -7,7 +7,7 @@
     <%= render 'pages/nav-home' %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon border-danger"></span>
     </button>
     <div class="offcanvas offcanvas-end bg-danger" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
@@ -17,14 +17,16 @@
       <div class="offcanvas-body">
 
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-
+          <li class="nav-item">
+            <%= link_to 'ACCUEIL', root_path, class: 'nav-link text-bg-danger' %>
+          </li>
           <li class="nav-item">
             <%= link_to 'GERER MON DEVIS', quote_path, class: 'nav-link text-bg-danger' %>
           </li>
 
         </ul>
 
-        <%= search_form_for @q, class: "d-flex mt-3" do |f| %>
+        <%= search_form_for @q, class: "d-flex mt-5" do |f| %>
           <%= f.label :name_or_category_name_cont, hidden: true %>
           <%= f.search_field :name_or_category_name_cont, class: "form-control me-2", placeholder: "Chercher un produit" %>
           <%= f.submit "🔎", class: "btn btn-success" %>
