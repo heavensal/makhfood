@@ -1,16 +1,25 @@
 <main class="container">
   <section class="row my-5 p-3 justify-content-center">
-    <div class="col-md-5">
+    <div class="col-md-6 col-12">
       <%= image_tag 'entrepot.jpg', class: 'img-fluid rounded-2' %>
     </div>
 
-    <div class="col-md-5 text-center my-3">
+    <div class="col-md-6 col-12 text-center my-3 ">
       <%= image_tag 'makhfood_no_bg.png', class: "w-50" %>
-      <p>
-        Votre spécialiste grossiste alimentaire
-      </p>
     </div>
   </section>
+
+<div class="row">
+  <p class="text-center text-danger fw-medium col-md-4 col-12">
+    VOTRE SPECIALISTE GROSSISTE ALIMENTAIRE
+  </p>
+  <p class="text-center text-danger fw-medium col-md-4 col-12">
+    OUVERT AUX PARTICULIERS ET PROFESSIONNELS
+  </p>
+  <p class="text-center text-danger fw-medium col-md-4 col-12">
+    LIVRAISON DANS TOUTE LA FRANCE
+  </p>
+</div>
 
   <%= render 'pages/who' %>
   <%= render 'pages/now' %>

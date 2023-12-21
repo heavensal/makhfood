@@ -1,14 +1,17 @@
-<nav class="navbar bg-primary-subtle border-bottom sticky-top">
+<nav class="navbar border-bottom bg-white sticky-top">
   <div class="container-fluid">
-    <%= link_to products_path do %>
+    <%= link_to root_path, class:"text-decoration-none text-black" do %>
       <%= image_tag 'makhfood_no_bg.png', width:"80" %>
+      <span class="fw-medium">MAKHFOOD MARKET</span>
     <% end %>
+    <%= render 'pages/nav-home' %>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-end bg-primary" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+    <div class="offcanvas offcanvas-end bg-danger" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title mx-auto" id="offcanvasDarkNavbarLabel">MAKHFOOD MARKET</h5>
+        <h5 class="offcanvas-title mx-auto text-bg-danger" id="offcanvasDarkNavbarLabel">MAKHFOOD MARKET</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -16,7 +19,7 @@
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 
           <li class="nav-item">
-            <%= link_to 'Gérer mon devis', quote_path, class: 'nav-link text-bg-primary' %>
+            <%= link_to 'GERER MON DEVIS', quote_path, class: 'nav-link text-bg-danger' %>
           </li>
 
         </ul>
@@ -29,15 +32,15 @@
 
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <%= link_to 'Tous les Produits', products_path, class: "nav-link text-bg-primary" %>
+            <%= link_to 'TOUS NOS PRODUITS', products_path, class: "nav-link text-bg-danger" %>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-bg-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Catégories
+            <a class="nav-link dropdown-toggle text-bg-danger" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              NOS CATEGORIES
             </a>
 
-            <ul class="dropdown-menu dropdown-menu bg-primary-subtle">
+            <ul class="dropdown-menu dropdown-menu bg-danger-subtle">
               <li><%= link_to 'Toutes les catégories', categories_path, class: "dropdown-item" %></li>
 
               <li>
@@ -51,11 +54,11 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-bg-primary" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Marques
+            <a class="nav-link dropdown-toggle text-bg-danger" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              NOS MARQUES
             </a>
 
-            <ul class="dropdown-menu bg-primary-subtle">
+            <ul class="dropdown-menu bg-danger-subtle">
               <li><%= link_to 'Toutes les marques', brands_path, class: "dropdown-item" %></li>
 
               <li>
@@ -70,6 +73,21 @@
             </ul>
           </li>
         </ul>
+
+        <section class="text-bg-danger row fw-bold text-center gy-2 mt-5 align-items-end align-items-center my-3">
+          <div class="col-12">
+            <i class="bi bi-basket3-fill"></i> Grossiste alimentation et boisson pour particuliers et professionnels
+          </div>
+          <div class="col-12">
+            <i class="bi bi-clock-fill"></i> Ouvert du Lundi au samedi
+          </div>
+          <div class="col-12">
+            <i class="bi bi-geo-alt-fill"></i> 39 Rue des Pays Bas, 84100 Orange
+          </div>
+          <div class="col-12">
+            <i class="bi bi-telephone-fill"></i> 06 18 04 50 86
+          </div>
+        </section>
 
 
 
