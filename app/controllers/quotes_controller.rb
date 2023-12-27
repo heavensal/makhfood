@@ -12,4 +12,13 @@ class QuotesController < ApplicationController
     QuotesMailer.send_quote(@quote_id).deliver_now!
     redirect_to root_path
   end
+
+  def edit
+
+  end
+
+  def params_quote
+    params.require(:quote).permit(:first_name, :last_name, :phone, :address, :company)
+  end
+
 end

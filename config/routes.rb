@@ -9,9 +9,11 @@ Rails.application.routes.draw do
   get 'quote', to: 'quotes#show', as: 'quote'
   get 'quotes/:id/send', to: 'quotes#send_my_quote', as: 'send_my_quote'
 
-  get 'pages/infos', to: 'pages#infos', as: 'infos'
-
   root 'pages#home'
+  get '/legal', to: 'pages#legal', as: 'legal'
+  get '/privacy_policy', to: 'pages#policy', as:'policy'
+  get '/cgu', to: 'pages#cgu', as: 'cgu'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
