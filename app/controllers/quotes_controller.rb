@@ -7,6 +7,16 @@ class QuotesController < ApplicationController
     @products = @quote.products
   end
 
+  def update
+    @quote = Quote.find(session[:quote_id])
+    @quote.update(quote_params)
+    if @quote.save
+      redirect_to quote_path
+    else
+      redirect_to root_path
+    end
+  end
+
   def send_my_quote
     @quote_id = Quote.find(session[:quote_id])
     QuotesMailer.send_quote(@quote_id).deliver_now!
@@ -17,7 +27,7 @@ class QuotesController < ApplicationController
 
   end
 
-  def params_quote
+  def quote_params
     params.require(:quote).permit(:first_name, :last_name, :phone, :address, :company)
   end
 

@@ -1,0 +1,48 @@
+<%= form_with(model: quote, local: true, method: :patch, class: 'form') do |form| %>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <%= form.label :first_name, "Prénom" %>
+          <%= form.text_field :first_name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <%= form.label :last_name, "Nom" %>
+          <%= form.text_field :last_name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <%= form.label :company, "Société" %>
+          <%= form.text_field :company, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <%= form.label :address, "Adresse" %>
+          <%= form.text_field :address, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <%= form.label :phone, "Téléphone" %>
+          <%= form.text_field :phone, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="my-3">
+          <%= form.submit 'Mettre à jour', class: 'btn btn-primary' %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% end %>

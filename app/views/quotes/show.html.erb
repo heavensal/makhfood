@@ -1,78 +1,92 @@
-<h1 class="text-center my-5 text-primary">
-  Mon Devis
+<h1 class="text-center my-5 text-danger">
+  MON DEVIS
 </h1>
 
+<%= render 'quotes/form-quote', quote: @quote %>
+
 <% if @quote_items.any? %>
-  <table class="table table-primary table-striped table-hover table-bordered border-2 w-75 mx-auto">
-    <thead class="table-secondary border-3">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
 
-      <td class="border-3">
-        PRODUITS
-      </td>
-      <td class="border-3">
-        VENDU PAR
-      </td>
-      <td class="border-3">
-        QUANTITE
-      </td>
-    </thead>
-    <% @quote_items.group_by { |item| item.product.category }.each do |category, items| %>
-            <thead class="w-75 mx-auto">
-                <tr class="table-success">
-                    <td colspan="3">
-                      <%= link_to category.name.upcase, category_path(category), class: "text-decoration-none text-dark" %>
-                    </td>
-                </tr>
-            </thead>
-      <tbody>
-        <% items.each do |item| %>
-          <tr class="table-primary">
-            <td>
-              <%= link_to item.product.name, product_path(item.product), class: "text-decoration-none text-dark" %>
-            </td>
-            <td>
-              <%= item.product.box %>
-            </td>
+      <table class="table table-primary table-striped table-hover table-bordered border-2">
+        <thead class="table-secondary border-3">
 
-            <td>
-             <div class="d-flex flex-wrap gx-1">
-                <div class="d-flex flex-wrap">
-                  <%= form_with model: item, url: quote_item_path(item), method: :patch, local: true, class: "d-flex flex-wrap" do |f| %>
-                    <div>
-                        <%= f.number_field :quantity, value: item.quantity, class: "form-control" %>
+          <td class="border-3">
+            PRODUITS
+          </td>
+          <td class="border-3">
+            VENDU PAR
+          </td>
+          <td class="border-3">
+            QUANTITE
+          </td>
+        </thead>
+        <% @quote_items.group_by { |item| item.product.category }.each do |category, items| %>
+                <thead class="w-75 mx-auto">
+                    <tr class="table-success">
+                        <td colspan="3">
+                          <%= link_to category.name.upcase, category_path(category), class: "text-decoration-none text-dark" %>
+                        </td>
+                    </tr>
+                </thead>
+          <tbody>
+            <% items.each do |item| %>
+              <tr class="table-primary">
+
+                <td>
+                  <%= cl_image_tag item.product.photo.key, class: 'img-fluid shadow-lg', width: 48, alt: item.product.name %>
+
+                  <%= link_to item.product.name, product_path(item.product), class: "text-decoration-none text-dark" %>
+                </td>
+                <td>
+                  <%= item.product.box %>
+                </td>
+
+                <td>
+                <div class="d-flex flex-wrap gx-1">
+                    <div class="d-flex flex-wrap">
+                      <%= form_with model: item, url: quote_item_path(item), method: :patch, local: true, class: "d-flex flex-wrap" do |f| %>
+                        <div>
+                            <%= f.number_field :quantity, value: item.quantity, class: "form-control" %>
+                        </div>
+                        <div>
+                            <%= f.submit "✔️", class: "btn btn-primary" %>
+                        </div>
+                      <% end %>
                     </div>
+
                     <div>
-                        <%= f.submit "✔️", class: "btn btn-primary" %>
+                      <%= link_to '❌', quote_item_path(item), data: {turbo_method: :delete}, class: "btn btn-danger" %>
                     </div>
-                  <% end %>
-                </div>
+                  </div>
+                </td>
 
-                <div>
-                  <%= link_to '❌', quote_item_path(item), data: {turbo_method: :delete}, class: "btn btn-danger" %>
-                </div>
-              </div>
-            </td>
-
-          </tr>
+              </tr>
+            <% end %>
+          </tbody>
         <% end %>
-      </tbody>
-    <% end %>
-  </table>
+      </table>
 
-<div class="text-center">
-  <%= link_to 'Ajouter un autre produit', products_path, class: "btn btn-secondary" %>
-  <%= link_to 'Envoyer le Devis', send_my_quote_path(@quote), class: "btn btn-primary" %>
+      <div class="text-center">
+        <%= link_to 'AJOUTER UN AUTRE PRODUIT', products_path, class: "btn btn-secondary" %>
+        <%= link_to 'ENVOYER LE DEVIS', send_my_quote_path(@quote), class: "btn btn-danger" %>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
 
 
 
 <% else %>
-  <h2 class="text-center">
+  <p class="text-center">
     Votre devis est vide pour le moment. Allez sur un produit pour l'ajouter à votre devis.
-  </h2>
+  </p>
 
   <div class="text-center">
-    <%= link_to 'Ajouter un autre produit', products_path, class: "btn btn-secondary" %>
+    <%= link_to 'AJOUTER UN AUTRE PRODUIT', products_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
