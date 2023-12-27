@@ -2,7 +2,11 @@
   MON DEVIS
 </h1>
 
-<%= render 'quotes/form-quote', quote: @quote %>
+<%= turbo_frame_tag @quote do %>
+  <%= link_to 'Modifier', edit_quote_path,  class: 'btn btn-primary' %>
+<% end %>
+
+
 
 <% if @quote_items.any? %>
 <div class="container">

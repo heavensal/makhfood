@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :quote_items, only: [:create, :update, :destroy]
 
   get 'quote', to: 'quotes#show', as: 'quote'
+  get 'quote/edit', to: 'quotes#edit', as: 'edit_quote'
   patch 'quote', to: "quotes#update"
   get 'quotes/:id/send', to: 'quotes#send_my_quote', as: 'send_my_quote'
 

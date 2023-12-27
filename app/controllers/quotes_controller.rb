@@ -7,13 +7,23 @@ class QuotesController < ApplicationController
     @products = @quote.products
   end
 
+  def edit
+    @quote = Quote.find(session[:quote_id])
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to edit_quote_path }
+    end
+  end
+
   def update
     @quote = Quote.find(session[:quote_id])
-    @quote.update(quote_params)
-    if @quote.save
-      redirect_to quote_path
+    if @quote.update(quote_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to quote_path(@quote) }
+      end
     else
-      redirect_to root_path
+      render :edit
     end
   end
 
@@ -21,10 +31,6 @@ class QuotesController < ApplicationController
     @quote_id = Quote.find(session[:quote_id])
     QuotesMailer.send_quote(@quote_id).deliver_now!
     redirect_to root_path
-  end
-
-  def edit
-
   end
 
   def quote_params
