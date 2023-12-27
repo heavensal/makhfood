@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row w-75 mx-auto">
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <label for="first_name">Prénom: </label>
+          <%= quote.first_name %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <label for="last_name">Nom: </label>
+          <%= quote.last_name %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <label for="company">Société: </label>
+          <%= quote.company %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <label for="address">Adresse: </label>
+          <%= quote.address %>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <div class="my-3">
+          <label for="phone">Téléphone: </label>
+          <%= quote.phone %>
+        </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="my-3">
+          <%= link_to 'Modifier', edit_quote_path,  class: 'btn btn-secondary' %>
+        </div>
+      </div>
+
+    </div>
+  </div>

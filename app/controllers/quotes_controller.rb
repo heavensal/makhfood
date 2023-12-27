@@ -9,19 +9,12 @@ class QuotesController < ApplicationController
 
   def edit
     @quote = Quote.find(session[:quote_id])
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to edit_quote_path }
-    end
   end
 
   def update
     @quote = Quote.find(session[:quote_id])
     if @quote.update(quote_params)
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to quote_path(@quote) }
-      end
+      redirect_to quote_path
     else
       render :edit
     end

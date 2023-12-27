@@ -2,11 +2,7 @@
   MON DEVIS
 </h1>
 
-<%= turbo_frame_tag @quote do %>
-  <%= link_to 'Modifier', edit_quote_path,  class: 'btn btn-primary' %>
-<% end %>
-
-
+<%= render 'quotes/params-quote', quote: @quote %>
 
 <% if @quote_items.any? %>
 <div class="container">
