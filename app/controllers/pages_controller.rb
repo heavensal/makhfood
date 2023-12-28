@@ -13,4 +13,7 @@ class PagesController < ApplicationController
 
   def cgu
   end
+
+  def redirect
+  end
 end
