@@ -1,11 +1,32 @@
-<section class="row g-0 justify-content-end">
+<section class="row my-5 g-1 align-items-center">
 
-  <div class="col-md-4 col-12">
-    Ici notre rayon
+  <div class="col-12 col-md-6 text-center">
+    <p class="p-5">
+      Découvrez la facilité de commander vos produits alimentaires directement en ligne ! Spécialisés dans la fourniture pour snacks, nous vous proposons un large choix de produits de qualité, accessibles en quelques clics depuis notre site. Facilitez vos achats et gagnez du temps en choisissant la commande en ligne. Sélectionnez vos produits, créez votre panier et laissez-vous guider. Un service rapide, fiable et adapté à vos besoins professionnels. Cliquez ci-dessous pour commencer à créer votre devis personnalisé.
+    </p>
+    <%= link_to 'CRÉER MON DEVIS', quote_path, class: "btn btn-danger" %>
   </div>
-  <div class="col-md-8 col-12 d-flex">
-      <%= image_tag 'rayon.jpeg', class: "img-fluid h-50 border border-primary-subtle border-5" %>
-      <%= image_tag 'rayon 2.jpg', class: "img-fluid h-50 border border-primary-subtle border-5" %>
+
+  <div class="col-6 col-md-3">
+    <%= image_tag 'rayon-1.jpg', width: "100%" %>
   </div>
+  <div class="col-6 col-md-3">
+    <%= image_tag 'rayon-2.jpg', width: "100%" %>
+  </div>
+
+  <div class="col-md-3 col-6">
+    <%= image_tag 'rayon-3.jpg', width: "100%" %>
+  </div>
+  <div class="col-md-3 col-6">
+    <%= image_tag 'rayon-4.jpg', width: "100%" %>
+  </div>
+
+  <div class="col-md-6 col-12 text-center">
+    <p class="p-5">
+      Chez nous, la qualité de stockage est au cœur de nos priorités. Nos entrepôts sont conçus pour assurer une propreté et une hygiène irréprochables, garantissant ainsi la fraîcheur et la sécurité de tous nos produits. Nous portons une attention particulière au conditionnement pour préserver au mieux les aliments, en respectant les normes les plus strictes. De plus, nous sommes fiers de travailler exclusivement avec des fournisseurs de viandes halal certifiés, assurant une traçabilité et une qualité inégalées. Découvrez notre engagement envers l'excellence en parcourant notre catalogue complet de produits.
+    </p>
+    <%= link_to 'NOTRE CATALOGUE', products_path, class: "btn btn-outline-danger" %>
+  </div>
+
 
 </section>

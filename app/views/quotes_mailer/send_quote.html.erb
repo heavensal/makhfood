@@ -4,24 +4,19 @@
 
 <ul>
   <li style="list-decoration:none">
-    <label for="first_name">PRENOM: </label>
-    <%= @quote.first_name %>
+    <%= @quote.first_name %> <%= @quote.last_name.upcase %>
   </li>
   <li style="list-decoration:none">
-    <label for="first_name">NOM: </label>
-    <%= @quote.last_name %>
+    <%= @quote.last_name.upcase %>
   </li>
   <li style="list-decoration:none">
-    <label for="company">SOCIETE: </label>
-    <%= @quote.company %>
+    <%= @quote.company.upcase %>
   </li>
   <li style="list-decoration:none">
-    <label for="address">ADRESSE: </label>
-    <%= @quote.address %>
+    <%= @quote.address.upcase %>
   </li>
   <li style="list-decoration:none">
-    <label for="phone">TELEPHONE: </label>
-    <%= @quote.address %>
+    <%= @quote.phone %>
   </li>
 </ul>
 
@@ -41,13 +36,13 @@
 
   <% @quote_items.group_by { |item| item.product.category }.each do |category, items| %>
     <tr>
-      <td colspan="3" style="background-color: #d1e7dd; border: 1px solid #dee2e6; text-align: center; padding: 0.75rem;">
+      <td colspan="3" style="background-color: #dfc2c4; border: 1px solid #dee2e6; text-align: center; padding: 0.75rem;">
         <%= category.name.upcase %>
       </td>
     </tr>
     <tbody>
       <% items.each_with_index do |item, index| %>
-        <tr style="<%= 'background-color: #f8f9fa;' if index.even? %>">
+        <tr style="<%= 'background-color: #ccc2a4;' if index.even? %>">
 
           <td style="border: 1px solid #dee2e6; padding: 0.75rem;">
             <%= item.product.name %>
