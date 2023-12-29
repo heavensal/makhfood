@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :brands
 
-  resources :quote_items, only: [:create, :update, :destroy]
+  resources :quote_items, only: [:create, :edit, :update, :destroy]
 
   get 'quote', to: 'quotes#show', as: 'quote'
   get 'quote/edit', to: 'quotes#edit', as: 'edit_quote'

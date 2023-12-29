@@ -1,10 +1,14 @@
+<h1 class="text-center my-5 text-danger">
+  MODIFIER LE DEVIS
+</h1>
+
 <%= form_with(model: @quote, local: false, method: :patch, class: 'form', id:'form') do |form| %>
   <div class="container">
     <div class="row w-75 mx-auto">
 
       <div class="col-12 col-md-6">
         <div class="my-3">
-          <%= form.label :first_name, "Prénom" %>
+          <%= form.label :first_name, "Prénom", autofocus: true %>
           <%= form.text_field :first_name, class: 'form-control' %>
         </div>
       </div>
@@ -39,7 +43,7 @@
 
       <div class="col-12 d-flex justify-content-center align-items-center">
         <div class="my-3">
-          <%= form.submit 'Mettre à jour', class: 'btn btn-primary' %>
+          <%= form.submit 'Mettre à jour', class: 'btn btn-danger' %>
         </div>
       </div>
 

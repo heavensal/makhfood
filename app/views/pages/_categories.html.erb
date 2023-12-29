@@ -5,7 +5,7 @@
 <section class="row g-1">
 
   <!-- Première colonne plus grande -->
-  <div class="col-md-3 col-12">
+  <div class="col-md-2 col-6">
     <%= link_to products_path, class: "text-decoration-none card" do %>
         <%= image_tag 'tous_les_produits.png', class: "object-fit-cover img-card-top rounded-top-1" %>
     <div class="card-body bg-danger rounded-bottom-1">
@@ -17,7 +17,7 @@
   </div>
 
   <% categories.each do |cat| %>
-  <div class="col-md-3 col-12">
+  <div class="col-md-2 col-6">
     <%= link_to category_path(cat), class: "text-decoration-none card" do %>
       <%= cl_image_tag( cat.photo.key, :transformation=>["square"], class: 'rounded-top-1' ) %>
       <div class="card-body bg-warning rounded-bottom-1">

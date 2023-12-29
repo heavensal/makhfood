@@ -1,0 +1,28 @@
+<h1 class="text-center my-5 text-danger">
+  Modifier la quantité
+</h1>
+
+<div class="text-center my-3">
+  <%= @quote_item.product.name %>
+</div>
+
+<div class="text-center my-3">
+  <%= @quote_item.product.box %>
+</div>
+
+<div class="text-center my-3">
+  VENDU PAR
+</div>
+
+
+
+<div class="container d-flex justify-content-center">
+  <%= form_with model: @quote_item, class: "d-flex flex-wrap" do |f| %>
+    <div class="mx-3">
+      <%= f.number_field :quantity, value: @quote_item.quantity, class: "form-control" %>
+    </div>
+    <div>
+        <%= f.submit "Modifier", class: "btn btn-danger" %>
+    </div>
+  <% end %>
+</div>

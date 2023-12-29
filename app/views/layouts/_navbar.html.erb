@@ -1,8 +1,8 @@
 <nav class="navbar border-bottom bg-white sticky-top">
   <div class="container-fluid">
-    <%= link_to root_path, class:"text-decoration-none text-black" do %>
+    <%= link_to root_path, class:"text-decoration-none text-black grow-hover" do %>
       <%= image_tag 'makhfood_no_bg.png', width:"80" %>
-      <span class="fw-medium">MAKHFOOD MARKET</span>
+      <span class="fw-medium d-none d-sm-inline">MAKHFOOD MARKET</span>
     <% end %>
     <%= render 'pages/nav-home' %>
 
@@ -110,3 +110,13 @@
     </div>
   </div>
 </nav>
+
+<style>
+  .grow-hover {
+    transition: transform 0.3s ease;
+  }
+
+  .grow-hover:hover {
+    transform: scale(1.05)
+  }
+</style>

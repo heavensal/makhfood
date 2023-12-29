@@ -1,5 +1,5 @@
-<h1 class="my-5 text-center text-primary">
-  <%= @category.name %>
+<h1 class="my-5 text-center text-danger">
+  <%= @category.name.upcase %>
 </h1>
 
 <%= render 'layouts/index/all', q: @q, categories: @categories, brands: @brands, products: @products %>

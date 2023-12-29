@@ -15,6 +15,8 @@ class ApplicationController < ActionController::Base
     if session[:quote_id].blank?
       @quote = Quote.create
       session[:quote_id] = @quote.id
+      @quote = Quote.find(session[:quote_id])
+      @quote_items = @quote.quote_items
     end
   end
 

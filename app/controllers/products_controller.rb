@@ -10,11 +10,21 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @quote = Quote.find(session[:quote_id])
     @quote_item = QuoteItem.new
   end
 
   def new
     @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+    @product.category = Category.first
+    @product.brand = Brand.first
+    if @product.save!
+      redirect_to product_path(@product)
+    end
   end
 
   def edit
@@ -32,15 +42,12 @@ class ProductsController < ApplicationController
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    respond_to do |format|
-      format.html { redirect_to root_path }
-      format.turbo_stream { render :destroy, locals: { product: @product } }
-    end
+    redirect_to products_path
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:name, :sku, :ean, :unit_price, :unit, :box, :price_per_unit, :tva, :mesure_unit, :ht_box_price, :ttc_box_price, :description, :specification, :conditionning, :link)
+    params.require(:product).permit(:name, :box, :link, :photo)
   end
 end

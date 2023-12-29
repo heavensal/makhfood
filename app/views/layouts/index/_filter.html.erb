@@ -4,7 +4,7 @@
 
     <% # Recherche %>
 
-    <li class="list-group-item list-group-item-action list-group-item-primary">
+    <li class="list-group-item list-group-item-action list-group-item-danger">
       <%= search_form_for q, class: "d-flex" do |f| %>
         <%= f.label :name_or_category_name_cont, hidden: true %>
         <%= f.search_field :name_or_category_name_cont, class: "form-control me-2", placeholder: "Chercher un produit" %>
@@ -15,7 +15,7 @@
     <% # Produits %>
 
     <%= link_to products_path, class: "text-decoration-none text-dark" do %>
-      <li class="list-group-item list-group-item-action list-group-item-primary">
+      <li class="list-group-item list-group-item-action list-group-item-danger">
         Tous les Produits
       </li>
     <% end %>
@@ -23,7 +23,7 @@
     <% # Catégories %>
 
     <a class="text-decoration-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapsing-1" aria-expanded="false" aria-controls="collapsing-1">
-      <li class="list-group-item list-group-item-action list-group-item-primary">
+      <li class="list-group-item list-group-item-action list-group-item-danger">
       Catégories
       </li>
     </a>
@@ -32,7 +32,7 @@
 
       <% categories.order(:name).each do |cat| %>
         <%= link_to category_path(cat), class: "text-decoration-none text-dark" do %>
-          <li class="list-group-item list-group-item-action list-group-item-secondary">
+          <li class="list-group-item list-group-item-action list-group-item-warning">
             <%= cat.name %>
           </li>
         <% end %>
@@ -44,7 +44,7 @@
 
       <% # Marques %>
       <a class="text-decoration-none text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapsing-2" aria-expanded="false" aria-controls="collapsing-2">
-        <li class="list-group-item list-group-item-action list-group-item-primary rounded-bottom">
+        <li class="list-group-item list-group-item-action list-group-item-danger rounded-bottom">
         Marques
         </li>
       </a>
@@ -52,7 +52,7 @@
       <ul id="collapsing-2" class="accordion-collapse collapse overflow-y-scroll list-group list-group-flush" style="max-height: 25vh; overflow-y: auto;">
         <% brands.order(:name).each do |b| %>
           <%= link_to brand_path(b), class: "text-decoration-none text-dark" do %>
-            <li class="list-group-item list-group-item-action list-group-item-secondary">
+            <li class="list-group-item list-group-item-action list-group-item-warning">
               <%= b.name %>
             </li>
           <% end %>

@@ -9,6 +9,10 @@ class QuoteItemsController < ApplicationController
     end
   end
 
+  def edit
+    @quote_item = QuoteItem.find(params[:id])
+  end
+
   def update
     @quote_item = QuoteItem.find(params[:id])
     @quote_item.update(quote_item_params)

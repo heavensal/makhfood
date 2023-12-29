@@ -24,7 +24,7 @@
         </thead>
         <% @quote_items.group_by { |item| item.product.category }.each do |category, items| %>
                 <thead class="w-75 mx-auto">
-                    <tr class="table-success">
+                    <tr class="table-danger">
                         <td colspan="3">
                           <%= link_to category.name.upcase, category_path(category), class: "text-decoration-none text-dark" %>
                         </td>
@@ -32,7 +32,7 @@
                 </thead>
           <tbody>
             <% items.each do |item| %>
-              <tr class="table-primary">
+              <tr class="table-warning">
 
                 <td>
                   <%= cl_image_tag item.product.photo.key, class: 'img-fluid shadow-lg', width: 48, alt: item.product.name %>
@@ -44,19 +44,15 @@
                 </td>
 
                 <td>
-                <div class="d-flex flex-wrap gx-1">
-                    <div class="d-flex flex-wrap">
-                      <%= form_with model: item, url: quote_item_path(item), method: :patch, local: true, class: "d-flex flex-wrap" do |f| %>
-                        <div>
-                            <%= f.number_field :quantity, value: item.quantity, class: "form-control" %>
-                        </div>
-                        <div>
-                            <%= f.submit "✔️", class: "btn btn-primary" %>
-                        </div>
-                      <% end %>
+
+                  <div class="row text-center align-items-center">
+
+                    <div class="col-md-3 col-12">
+                      <%= item.quantity %>
                     </div>
 
-                    <div>
+                    <div class="col-md-9 col-12">
+                      <%= link_to '✏️', edit_quote_item_path(item), class: "btn btn-secondary" %>
                       <%= link_to '❌', quote_item_path(item), data: {turbo_method: :delete}, class: "btn btn-danger" %>
                     </div>
                   </div>

@@ -1,7 +1,8 @@
-<h1 class="my-5 text-center text-danger">MODIFIER CE PRODUIT</h1>
+<h1 class="my-5 text-center text-danger">CREER UN PRODUIT</h1>
 
 <%= form_with(model: @product, local: true, class: 'form') do |form| %>
   <div class="row w-75 mx-auto">
+
     <div class="form-group col-12 col-md-6 my-3">
       <%= form.label :name, "Nom du produit" %>
       <%= form.text_field :name, class: 'form-control' %>
@@ -21,10 +22,7 @@
 
 
   <div class="form-group text-center my-3">
-    <%= form.submit 'METTRE A JOUR', class: 'btn btn-success' %>
+    <%= form.submit 'AJOUTER LE PRODUIT', class: 'btn btn-success' %>
   </div>
 
-  <div class="text-center my-3">
-  <%= link_to 'SUPPRIMER CE PRODUIT', product_path(@product), class:"btn btn-dark", data: {turbo_method: :delete} %>
-</div>
 <% end %>

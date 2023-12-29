@@ -1,14 +1,11 @@
-<%= link_to 'Modifier', edit_product_path(@product) %>
-
-<%= link_to 'Supprimer', product_path(@product), data: {turbo_method: :delete} %>
 <div class="container mt-5">
   <div class="row">
 
-    <div class="col-md-6">
+    <div class="col-md-6 text-center">
       <%= cl_image_tag @product.photo.key, class: 'img-fluid rounded shadow-lg', alt: @product.name %>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 text-center">
       <h1 class="display-4 shadow-3 p-3"><%= @product.name %></h1>
 
       <table class="table table-warning table-bordered table-striped-columns">
@@ -33,7 +30,7 @@
 
 
 
-        <tr class="table-primary">
+        <tr class="table-danger">
           <td>
             VENDU PAR
           </td>
@@ -46,12 +43,19 @@
 
 
       </table>
-      <div class="text-center">
-        <%= form_with url: quote_items_path, method: :post do %>
-          <%= hidden_field_tag :product_id, @product.id %>
-          <%= submit_tag "Ajouter au devis", class: "btn btn-primary" %>
+
+        <% unless @quote.quote_items.exists?(product_id: @product.id) %>
+          <div class="text-center">
+            <%= form_with url: quote_items_path, method: :post do %>
+              <%= hidden_field_tag :product_id, @product.id %>
+              <%= submit_tag "AJOUTER AU DEVIS", class: "btn btn-danger" %>
+            <% end %>
+          </div>
+        <% else %>
+          <button class="btn btn-danger" disabled>Produit déjà ajouté</button>
         <% end %>
-      </div>
+
+
       <!-- Ajouter ici d'autres détails sur le produit si nécessaire -->
     </div>
   </div>
