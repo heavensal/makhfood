@@ -20,8 +20,6 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.category = Category.first
-    @product.brand = Brand.first
     if @product.save!
       redirect_to product_path(@product)
     end
