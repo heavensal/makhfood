@@ -12,12 +12,10 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_quote
-    if session[:quote_id].blank?
-      @quote = Quote.create
-      session[:quote_id] = @quote.id
-      @quote = Quote.find(session[:quote_id])
-      @quote_items = @quote.quote_items
-    end
+    return if session[:quote_id].present?
+    @quote = Quote.find_or_create_by(id: session[:quote_id])
+    session[:quote_id] = @quote.id
+    @quote_items = @quote.quote_items
   end
 
   def search

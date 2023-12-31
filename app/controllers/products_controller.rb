@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :set_or_create_quote, only: [:show]
+
   def index
     @products = if params[:q].present?
                   @q.result(distinct: true)
@@ -10,7 +12,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @quote = Quote.find(session[:quote_id])
     @quote_item = QuoteItem.new
   end
 
@@ -44,6 +45,11 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def set_or_create_quote
+    @quote = Quote.find_by(id: session[:quote_id]) || Quote.create!
+    session[:quote_id] = @quote.id
+  end
 
   def product_params
     params.require(:product).permit(:name, :box, :link, :photo, :category_id, :brand_id)
