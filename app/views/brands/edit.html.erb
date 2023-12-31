@@ -1,4 +1,4 @@
-<h1 class="my-5 text-center text-danger">CREER UN MARQUE</h1>
+<h1 class="my-5 text-center text-danger">MODIFIER UN MARQUE</h1>
 
 <%= form_with(model: @brand, local: true, class: 'form') do |form| %>
   <div class="row w-75 mx-auto">
@@ -11,7 +11,11 @@
   </div>
 
   <div class="form-group text-center my-3">
-    <%= form.submit 'AJOUTER LA MARQUE', class: 'btn btn-success' %>
+    <%= form.submit 'MODIFIER LA MARQUE', class: 'btn btn-success' %>
   </div>
+
+  <div class="text-center my-3">
+  <%= link_to 'SUPPRIMER CETTE MARQUE', brand_path(@brand), class:"btn btn-dark", data: {turbo_method: :delete} %>
+</div>
 
 <% end %>
