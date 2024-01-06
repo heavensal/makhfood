@@ -84,10 +84,15 @@
             <i class="bi bi-clock-fill"></i> Ouvert du Lundi au samedi
           </div>
           <div class="col-12">
-            <i class="bi bi-geo-alt-fill"></i> 39 Rue des Pays Bas, 84100 Orange
+            <%= link_to "https://www.google.fr/maps/place/39+Rue+des+Pays+Bas,+84100+Orange/@44.1257522,4.837311,17z/data=!3m1!4b1!4m6!3m5!1s0x12b590ed3bf56cd1:0xd3fa4c732302d6c5!8m2!3d44.1257484!4d4.8398913!16s%2Fg%2F11c4vfw3vz?entry=ttu", target: "_blank", class: "text-decoration-none text-white" do %>
+              <i class="bi bi-geo-alt-fill"></i> 39 Rue des Pays Bas, 84100 Orange
+            <% end %>
           </div>
           <div class="col-12">
-            <i class="bi bi-telephone-fill"></i> 06 18 04 50 86
+            <%= link_to "tel:+33618045086", target: "_blank", class: "text-decoration-none text-white" do %>
+              <i class="bi bi-telephone-fill"></i> 06 18 04 50 86
+            <% end %>
+
           </div>
         </section>
 
