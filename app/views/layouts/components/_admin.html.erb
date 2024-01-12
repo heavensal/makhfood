@@ -1,0 +1,3 @@
+<section id="admin">
+  <%= link_to 'Déconnexion de l\'admin', destroy_admin_session_path, data: {turbo_method: :delete} if current_admin %>
+</section>

@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_or_create_quote, only: [:show]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @products = if params[:q].present?

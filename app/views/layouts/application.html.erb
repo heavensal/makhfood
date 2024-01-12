@@ -14,6 +14,8 @@
   <body>
     <%= render 'layouts/components/banner' %>
     <%= render 'layouts/navbar' %>
+    <%= render 'layouts/components/admin' %>
+    <%= render 'layouts/components/buttons-admin' if current_admin %>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
