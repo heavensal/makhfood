@@ -13,6 +13,14 @@ class QuotesMailer < ApplicationMailer
     @products = @quote.products
 
     mail(to: "commande@makhfoodmarket.fr", subject: "Demande devis n° #{@quote.id}")
+  end
+
+  def send_for_asker(quote)
+    @quote = Quote.find(quote[:id])
+    @quote_items = @quote.quote_items.includes(product: [:category, :brand]).sort_by { |item|
+      [item.product.category.name, item.product.brand.name]
+    }
+    @products = @quote.products
     mail(to: @quote.email, subject: "Confirmation d'envoi du devis à MAKHFOOD MARKET")
   end
 end

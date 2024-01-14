@@ -21,6 +21,7 @@ class QuotesController < ApplicationController
 
   def send_my_quote
     QuotesMailer.send_quote(@quote).deliver_now!
+    QuotesMailer.send_for_asker(@quote).deliver_now!
     redirect_to redirect_path
     new_quote = Quote.create!
     session[:quote_id] = new_quote.id

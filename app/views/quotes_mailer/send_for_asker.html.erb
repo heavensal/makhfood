@@ -1,0 +1,67 @@
+<h1>
+  Votre commande a été reçue avec succès !
+</h1>
+
+<p>
+  MAKHFOOD MARKET vous recontactera lorsque votre commande sera prête. Pour toute information complémentaire, n'hésitez pas à nous contacter au 06 18 04 50 86.
+</p>
+
+<ul>
+  <li style="list-decoration:none">
+    <%= @quote.first_name %> <%= @quote.last_name.upcase %>
+  </li>
+  <li style="list-decoration:none">
+    <%= @quote.company.upcase %>
+  </li>
+  <li style="list-decoration:none">
+    <%= @quote.address.upcase %>
+  </li>
+  <li style="list-decoration:none">
+    <%= @quote.phone %>
+  </li>
+  <li style="list-decoration:none">
+    <%= @quote.email %>
+  </li>
+</ul>
+
+<table style="width: 75%; margin: auto; border-collapse: collapse; border: 1px solid #dee2e6;">
+
+  <thead>
+    <td style="border: 2px solid #b6c0c8; padding: 0.75rem; text-align: center;">
+      PRODUITS
+    </td>
+    <td style="border: 2px solid #b6c0c8; padding: 0.75rem; text-align: center;">
+      VENDU PAR
+    </td>
+    <td style="border: 2px solid #b6c0c8; padding: 0.75rem; text-align: center;">
+      QUANTITE
+    </td>
+  </thead>
+
+  <% @quote_items.group_by { |item| item.product.category }.each do |category, items| %>
+    <tr>
+      <td colspan="3" style="background-color: #f1aeb5; border: 1px solid #dee2e6; text-align: center; padding: 0.75rem;">
+        <%= category.name.upcase %>
+      </td>
+    </tr>
+    <tbody>
+      <% items.each_with_index do |item, index| %>
+        <tr style="<%= 'background-color: #ffe69c;' if index.even? %>">
+
+          <td style="border: 1px solid #dee2e6; padding: 0.75rem;">
+            <%= item.product.name %>
+          </td>
+
+          <td style="border: 1px solid #dee2e6; padding: 0.75rem;">
+            <%= item.product.box %>
+          </td>
+
+          <td style="border: 1px solid #dee2e6; padding: 0.75rem;">
+            <%= item.quantity %>
+          </td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
