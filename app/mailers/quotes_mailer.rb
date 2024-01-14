@@ -13,5 +13,6 @@ class QuotesMailer < ApplicationMailer
     @products = @quote.products
 
     mail(to: "commande@makhfoodmarket.fr", subject: "Demande devis n° #{@quote.id}")
+    mail(to: @quote.email, subject: "Confirmation d'envoi du devis à MAKHFOOD MARKET")
   end
 end
