@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
                   @q.result(distinct: true)
 
                 else
-                  Product.all
+                  Product.all.with_attached_photo
                 end
   end
 
